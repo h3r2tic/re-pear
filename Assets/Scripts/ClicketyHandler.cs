@@ -5,6 +5,7 @@ using UnityEngine;
 public class ClicketyHandler : MonoBehaviour {
     private Rigidbody draggedBody;
     private Vector3 pointOnDraggedBody;
+    private Vector3 normalOnDraggedBody;
 
 
     void Update() {
@@ -14,7 +15,7 @@ public class ClicketyHandler : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit)) {
                 if (hit.rigidbody) {
-                    this.onDragStart(hit.rigidbody, hit.point);
+                    this.onDragStart(hit.rigidbody, hit.point, hit.normal);
                 }
             }
         }
@@ -25,7 +26,7 @@ public class ClicketyHandler : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit)) {
                 if (hit.rigidbody) {
-                    this.onDragEnd(hit.rigidbody, hit.point);
+                    this.onDragEnd(hit.rigidbody, hit.point, hit.normal);
                 }
             }
 
@@ -33,19 +34,23 @@ public class ClicketyHandler : MonoBehaviour {
         }
     }
 
-    void onDragStart(Rigidbody body, Vector3 worldPos) {
-        Debug.Log("onDragStart");
+    void onDragStart(Rigidbody body, Vector3 worldPos, Vector3 worldNormal) {
         draggedBody = body;
         pointOnDraggedBody = body.transform.InverseTransformPoint(worldPos);
+        normalOnDraggedBody = body.transform.InverseTransformVector(worldNormal);
     }
 
-    void onDragEnd(Rigidbody body, Vector3 worldPos) {
-        Debug.Log("onDragEnd");
+    void onDragEnd(Rigidbody body, Vector3 worldPos, Vector3 worldNormal) {
         if (!draggedBody || body == draggedBody || draggedBody.gameObject == null) {
             return;
         }
 
-        Debug.Log("Connecting bodies!");
+        Quaternion backupRotation = draggedBody.transform.localRotation;
+
+        Vector3 n1 = normalOnDraggedBody;
+        Vector3 n2 = draggedBody.transform.InverseTransformVector(worldNormal);
+        draggedBody.transform.localRotation *= Quaternion.FromToRotation(n1, -n2);
+
         var joint = draggedBody.gameObject.AddComponent<ConfigurableJoint>();
         joint.autoConfigureConnectedAnchor = false;
         joint.anchor = pointOnDraggedBody;
@@ -53,12 +58,34 @@ public class ClicketyHandler : MonoBehaviour {
         joint.connectedAnchor = body.transform.InverseTransformPoint(worldPos);
         joint.enableCollision = true;
 
-        var posDrive = new JointDrive();
-        posDrive.maximumForce = 100.0f;
-        posDrive.positionDamper = 10.0f;
-        posDrive.positionSpring = 100.0f;
-        joint.xDrive = posDrive;
-        joint.yDrive = posDrive;
-        joint.zDrive = posDrive;
+        var drive = new JointDrive();
+        drive.maximumForce = 10.0f;
+        drive.positionDamper = 1.0f;
+        drive.positionSpring = 10.0f;
+        joint.xDrive = drive;
+        joint.yDrive = drive;
+        joint.zDrive = drive;
+        joint.slerpDrive = drive;
+        joint.rotationDriveMode = RotationDriveMode.Slerp;
+
+        draggedBody.transform.localRotation = backupRotation;
+
+        StartCoroutine(strengthenJoint(joint));
+    }
+
+    private IEnumerator strengthenJoint(ConfigurableJoint joint) {
+        for (int i = 1; i <= 10; ++i) {
+            yield return new WaitForSeconds(0.1f);
+            float mult = (float)i;
+
+            var drive = new JointDrive();
+            drive.maximumForce = 100.0f * mult;
+            drive.positionDamper = 10.0f;
+            drive.positionSpring = 100.0f * mult;
+            joint.xDrive = drive;
+            joint.yDrive = drive;
+            joint.zDrive = drive;
+            joint.slerpDrive = drive;
+        }
     }
 }
