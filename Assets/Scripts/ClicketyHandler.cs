@@ -11,7 +11,7 @@ public class ClicketyHandler : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if (Input.GetMouseButtonDown (0)) {
-            Debug.Log ("ohai there");
+            Debug.Log ("pearfect click!");
         }
     }
 }
