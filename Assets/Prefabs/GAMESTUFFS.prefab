@@ -51,6 +51,10 @@ MonoBehaviour:
   cursorObject: {fileID: 5769611248780424215}
   attachmentPreviewPrefab: {fileID: 5360793688596775125, guid: 35836df931957d74bb2a26e4067e5414,
     type: 3}
+  activeDragWireMaterial: {fileID: 2100000, guid: 4deade882e34022489da5c25b1fd8502,
+    type: 2}
+  inertDragWireMaterial: {fileID: 2100000, guid: 522a524d0de01d043a0842c257c0a4a8,
+    type: 2}
 --- !u!114 &5769611248229961291
 MonoBehaviour:
   m_ObjectHideFlags: 0
