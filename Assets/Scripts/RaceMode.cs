@@ -38,7 +38,7 @@ public class RaceMode : MonoBehaviour {
         this.prepretimer = 0.5f;
         //expand the floor
         var ground = GameObject.Find("Ground");
-        ground.transform.localScale = new Vector3(30.0f, 1.0f, 30.0f);
+        ground.transform.localScale = new Vector3(300.0f, 1.0f, 300.0f);
         //
         GameObject.Find("RaceText").GetComponent<Text>().enabled = true;
 
@@ -68,6 +68,13 @@ public class RaceMode : MonoBehaviour {
                     //
                     DisplayScore(score);
                 }
+            }
+
+            var poc = Camera.main.GetComponent<PseudoOrthoCamera>();
+            var pear = GameObject.Find("Pear");
+            if (poc && pear) {
+                var newOffset = pear.transform.position + new Vector3(0, 1.0f, 0);
+                poc.worldOffset = Vector3.Lerp(newOffset, poc.worldOffset, Mathf.Exp(-2.0f * Time.deltaTime));
             }
         }
 
