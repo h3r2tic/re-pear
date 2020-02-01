@@ -18,11 +18,11 @@ public class CameraRotator : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.RightArrow)) {
+        if (Input.GetKeyDown(KeyCode.X)) {
             targetAngle += -90.0f;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+        if (Input.GetKeyDown(KeyCode.Z)) {
             targetAngle += 90.0f;
         }
 

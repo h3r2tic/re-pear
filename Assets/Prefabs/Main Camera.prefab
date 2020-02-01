@@ -29,8 +29,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2901956133879786631}
-  m_LocalRotation: {x: 0.17364821, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 34.202023, z: -93.96926}
+  m_LocalRotation: {x: 0.16773129, y: -0.254887, z: 0.044943463, w: 0.95125127}
+  m_LocalPosition: {x: 46.984634, y: 34.202023, z: -81.37976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5720f3e4091d5649966a31a0c9adc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationCount: 4
-  stepCount: 4
+  rotationCount: 3
+  stepCount: 5
   radius: 2.6
   expStart: 1
   expFactor: 1
@@ -118,7 +118,7 @@ MonoBehaviour:
   fallbackMethod: 0
   cubemapFallback: {fileID: 0}
   resolutionDownscale: 2
-  reuseCount: 2
+  reuseCount: 4
   temporalEnabled: 1
   temporalResponse: 0.35
   debugMode: 7

@@ -32,9 +32,9 @@ RectTransform:
   m_Father: {fileID: 121065622544120558}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 600, y: 350}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 600, y: -129}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &121065621824302032
@@ -82,7 +82,7 @@ MonoBehaviour:
     Press and drag one obj onto another to link them
 
 
-    Use cursors to rotate the camera'
+    Z and X to rotate the camera, R restarts'
 --- !u!1 &121065622544120546
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 121065622544120556}
   - component: {fileID: 121065622544120557}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Main UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
