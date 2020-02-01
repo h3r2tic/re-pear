@@ -145,7 +145,7 @@ MonoBehaviour:
   antialiasingMode: 3
   temporalAntialiasing:
     jitterSpread: 0.75
-    sharpness: 0.25
+    sharpness: 0
     stationaryBlending: 0.75
     motionBlending: 0.5
   subpixelMorphologicalAntialiasing:
