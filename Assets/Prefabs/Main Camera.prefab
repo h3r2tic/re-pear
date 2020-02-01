@@ -100,12 +100,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationCount: 3
-  stepCount: 5
+  stepCount: 4
   radius: 2.6
   expStart: 1
   expFactor: 1
   jitterSamples: 1
-  GIBoost: 2
+  GIBoost: 3
   lightBufferHDR: 0
   lightBufferResolution: 2
   LnDlOffset: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
   cubemapFallback: {fileID: 0}
   resolutionDownscale: 2
   reuseCount: 4
-  temporalEnabled: 1
-  temporalResponse: 0.35
+  temporalEnabled: 0
+  temporalResponse: 0
   debugMode: 7
   lightOnly: 0
 --- !u!114 &2901956133879786624

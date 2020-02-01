@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Text: 'Press SPACE to activate special objects
 
 
-    Press and drag one obj onto another to link them
+    Click with mouse and drag one obj onto another to link them
 
 
     Z and X to rotate the camera, R restarts'
