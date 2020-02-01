@@ -12,6 +12,7 @@ public class GameFlow : MonoBehaviour {
     }
 
     public void LoadMainScene() {
+        Cursor.visible = true;
         SceneManager.LoadScene("SampleScene");
     }
 }
