@@ -36,7 +36,7 @@ public class ObjectFaces : MonoBehaviour {
     }
 
     void CheckIfDragged() {
-        if (Vector3.Distance(this.transform.position, this.parentCachePosition) > 0.01f) {
+        if (this.GetComponent<Rigidbody>().velocity.magnitude > 0.2f) {
             this.isDragged = true;
             this.parentCachePosition = this.transform.position;
             this.planeObj.GetComponent<Renderer>().material = this.surprisedMaterial;
