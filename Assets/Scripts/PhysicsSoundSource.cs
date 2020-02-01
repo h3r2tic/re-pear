@@ -13,8 +13,8 @@ public class PhysicsSoundSource : MonoBehaviour {
         }
 
         if (clip) {
-            audioSource.PlayOneShot(clip);
-            audioSource.volume = Mathf.Min(collision.impulse.magnitude / 5.0f, 1.0f);
+            float volume = Mathf.Min(collision.impulse.magnitude / 5.0f, 1.0f);
+            audioSource.PlayOneShot(clip, volume);
         }
     }
 
