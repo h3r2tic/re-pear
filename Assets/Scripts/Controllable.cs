@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public interface IControlHandler {
@@ -31,6 +32,7 @@ public class Controllable : MonoBehaviour {
             }
         }
 
+        var controlsGuide = GameObject.Find("ControlsGuide");
         var keys = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4 };
         var keyIdx = Random.Range(0, 4);
         this.myKey = keys[keyIdx];
@@ -38,6 +40,8 @@ public class Controllable : MonoBehaviour {
         foreach (GameObject obj in desc) {
             var mr = obj.GetComponent<MeshRenderer>();
             if (mr && MaterialManager.instance) {
+                var keyGuideImage = controlsGuide.transform.GetChild(keyIdx).gameObject.GetComponent<Image>();
+                keyGuideImage.color = MaterialManager.instance.keyMats[keyIdx].color;
                 mr.sharedMaterial = MaterialManager.instance.keyMats[keyIdx];
             }
         }
