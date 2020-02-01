@@ -76,7 +76,7 @@ public class ClicketyHandler : MonoBehaviour {
         cursorLineRenderer.SetPositions(new Vector3[] { v1, v2 });
 
         // Show attachment preview
-        if (canAttachObjects(draggedBody.transform, hit.transform)) {
+        if (attachmentPreviewPrefab && canAttachObjects(draggedBody.transform, hit.transform)) {
             var meshFilter = attachmentPreviewPrefab.GetComponent<MeshFilter>();
             var meshRenderer = attachmentPreviewPrefab.GetComponent<MeshRenderer>();
 
