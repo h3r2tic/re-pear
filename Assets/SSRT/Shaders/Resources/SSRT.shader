@@ -20,12 +20,12 @@ Shader "Hidden/SSRT"
 				#pragma vertex vert
 				#pragma fragment frag
 				
-				void frag(v2f input, out float3 BentNormalWorld : SV_Target0, out float4 GIOcclusion : SV_Target1)
+				void frag(v2f input, out float4 BentNormalWorld : SV_Target0, out float4 GIOcclusion : SV_Target1)
 				{
 					float2 uv = input.uv.xy;
 					uv += (1.0 / _ScreenParams.xy) * (_ResolutionDownscale == 1 ? 0 : 0.5);
 					GIOcclusion = 0;
-					BentNormalWorld = SSRT(uv, _RotationCount, _StepCount, GIOcclusion);
+					BentNormalWorld.xyz = SSRT(uv, _RotationCount, _StepCount, GIOcclusion);
 				}
 			ENDCG 
 		}
