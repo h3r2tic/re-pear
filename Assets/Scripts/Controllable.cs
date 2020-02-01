@@ -41,13 +41,9 @@ public class Controllable : MonoBehaviour {
             }
         }
 
-        var controlsGuide = GameObject.Find("ControlsGuide");
         var keys = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4 };
         var keyIdx = nextColor++ % 4;
         this.myKey = keys[keyIdx];
-
-        var keyGuideImage = controlsGuide.transform.GetChild(keyIdx).gameObject.GetComponent<Image>();
-        keyGuideImage.color = MaterialManager.instance.keyMats[keyIdx].color;
 
         foreach (GameObject obj in desc) {
             var mr = obj.GetComponent<MeshRenderer>();
