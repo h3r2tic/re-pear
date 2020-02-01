@@ -14,6 +14,13 @@ public class ClicketyHandler : MonoBehaviour {
     private Vector3 pointOnDraggedBody;
     private Vector3 normalOnDraggedBody;
 
+    List<Joint> recentlyCreatedJoints = new List<Joint>();
+
+    public static ClicketyHandler instance;
+    void Awake() {
+        instance = this;
+    }
+
     void Start() {
         cursorLineRenderer = cursorObject.GetComponent<LineRenderer>();
     }
@@ -136,21 +143,71 @@ public class ClicketyHandler : MonoBehaviour {
 
         StartCoroutine(strengthenJoint(joint));
 
-        onObjectsAttached(body.gameObject, draggedBody.gameObject);
+        onObjectsAttached(joint, body.gameObject, draggedBody.gameObject);
     }
 
-    void onObjectsAttached(GameObject a, GameObject b) {
+    void onObjectsAttached(ConfigurableJoint joint, GameObject a, GameObject b) {
         var ac = a.transform.root.GetComponent<Controllable>();
         var bc = b.transform.root.GetComponent<Controllable>();
 
-        if (ac && !ac.isConnected) {
-            ObjectSpawner.instance.disconnectedCount -= 1;
-            ac.isConnected = true;
+        if (ac) {
+            if (0 == ac.connectionCount) {
+                ObjectSpawner.instance.disconnectedCount -= 1;
+            }
+
+            ac.connectionCount += 1;
         }
 
-        if (bc && !bc.isConnected) {
-            ObjectSpawner.instance.disconnectedCount -= 1;
-            bc.isConnected = true;
+        if (bc) {
+            if (0 == bc.connectionCount) {
+                ObjectSpawner.instance.disconnectedCount -= 1;
+            }
+
+            bc.connectionCount += 1;
+        }
+
+        this.recentlyCreatedJoints.Add(joint);
+    }
+
+    public void onUndoLastAction() {
+        if (this.recentlyCreatedJoints.Count > 0) {
+            int lastIdx = this.recentlyCreatedJoints.Count - 1;
+            var last = this.recentlyCreatedJoints[lastIdx];
+            this.recentlyCreatedJoints.RemoveAt(lastIdx);
+
+            if (last) {
+                var b0 = last.gameObject.GetComponent<Rigidbody>();
+                var b1 = last.connectedBody;
+
+                // Disconnect objects somewhat violently
+                if (b0 && b1) {
+                    var p0 = b0.transform.position;
+                    var p1 = b1.transform.position;
+                    var forceAxis = (p0 - p1).normalized;
+
+                    float scl = 200.0f;
+                    b0.AddForceAtPosition(forceAxis * scl, p0, ForceMode.Acceleration);
+                    b1.AddForceAtPosition(-forceAxis * scl, p1, ForceMode.Acceleration);
+                }
+
+                if (b0) {
+                    var bc = b0.transform.root.GetComponent<Controllable>();
+                    if (bc) {
+                        bc.connectionCount -= 1;
+                        bc.onDisconnected();
+                    }
+                }
+
+                if (b1) {
+                    var bc = b1.transform.root.GetComponent<Controllable>();
+                    if (bc) {
+                        bc.connectionCount -= 1;
+                        bc.onDisconnected();
+                    }
+                }
+
+                Destroy(last);
+            }
         }
     }
 

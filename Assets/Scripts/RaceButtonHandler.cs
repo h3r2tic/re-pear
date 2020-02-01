@@ -8,4 +8,9 @@ public class RaceButtonHandler : MonoBehaviour {
         FindObjectsOfType<RaceMode>()[0].StartRace();
     }
 
+    public void UndoStep() {
+        if (ClicketyHandler.instance) {
+            ClicketyHandler.instance.onUndoLastAction();
+        }
+    }
 }

@@ -13,7 +13,7 @@ public class Controllable : MonoBehaviour {
     List<IControlHandler> controlHandlers;
 
     static int nextColor = 0;
-    public bool isConnected = false;
+    public int connectionCount = 0;
 
     private void getDescendants(Transform parent, List<GameObject> list) {
         foreach (Transform child in parent) {
@@ -72,9 +72,15 @@ public class Controllable : MonoBehaviour {
     void OnDestroy() {
         // We need a replacement!
         if (ObjectSpawner.instance) {
-            if (!isConnected) {
+            if (0 == connectionCount) {
                 ObjectSpawner.instance.disconnectedCount -= 1;
             }
+        }
+    }
+
+    public void onDisconnected() {
+        if (0 == connectionCount && ObjectSpawner.instance) {
+            ObjectSpawner.instance.disconnectedCount += 1;
         }
     }
 }
