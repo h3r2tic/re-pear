@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorObject: {fileID: 5769611248780424215}
+  attachmentPreviewPrefab: {fileID: 5360793688596775125, guid: 35836df931957d74bb2a26e4067e5414,
+    type: 3}
 --- !u!114 &5769611248229961291
 MonoBehaviour:
   m_ObjectHideFlags: 0

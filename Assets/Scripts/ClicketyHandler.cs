@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ClicketyHandler : MonoBehaviour {
     public Transform cursorObject;
+    public GameObject attachmentPreviewPrefab;
     private LineRenderer cursorLineRenderer;
     private ConfigurableJoint cursorJoint;
 
@@ -47,7 +48,7 @@ public class ClicketyHandler : MonoBehaviour {
         }
 
         if (draggedBody) {
-            onDragContinue();
+            onDragContinue(hit);
         }
     }
 
@@ -69,10 +70,23 @@ public class ClicketyHandler : MonoBehaviour {
         return ap == bp;
     }
 
-    void onDragContinue() {
+    void onDragContinue(RaycastHit hit) {
         var v1 = draggedBody.transform.TransformPoint(pointOnDraggedBody);
         var v2 = cursorObject.position;
         cursorLineRenderer.SetPositions(new Vector3[] { v1, v2 });
+
+        // Show attachment preview
+        if (canAttachObjects(draggedBody.transform, hit.transform)) {
+            var meshFilter = attachmentPreviewPrefab.GetComponent<MeshFilter>();
+            var meshRenderer = attachmentPreviewPrefab.GetComponent<MeshRenderer>();
+
+            Quaternion rotation = Quaternion.LookRotation(hit.normal) * attachmentPreviewPrefab.transform.localRotation;
+
+            Matrix4x4 m = Matrix4x4.identity;
+            m.SetTRS(cursorObject.position, rotation, attachmentPreviewPrefab.transform.localScale);
+
+            Graphics.DrawMesh(meshFilter.sharedMesh, m, meshRenderer.sharedMaterial, 0);
+        }
     }
 
     void onDragStart(Rigidbody body, Vector3 worldPos, Vector3 worldNormal) {
