@@ -17,10 +17,10 @@ public class RaceMode : MonoBehaviour {
     GameObject stopwatch;
 
     void Start() {
+        GameObject.Find("Stopwatch");
         this.stopwatch = GameObject.Find("Stopwatch");
-        Debug.Log(this.stopwatch);
 
-        this.countdown = GameObject.Find("Countdown").GetComponent<Text>();
+        this.countdown = this.stopwatch.transform.GetChild(0).GetComponent<Text>();
         this.stopwatch.SetActive(false);
     }
 
