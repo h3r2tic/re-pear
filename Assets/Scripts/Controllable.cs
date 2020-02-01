@@ -37,11 +37,12 @@ public class Controllable : MonoBehaviour {
         var keyIdx = Random.Range(0, 4);
         this.myKey = keys[keyIdx];
 
+        var keyGuideImage = controlsGuide.transform.GetChild(keyIdx).gameObject.GetComponent<Image>();
+        keyGuideImage.color = MaterialManager.instance.keyMats[keyIdx].color;
+
         foreach (GameObject obj in desc) {
             var mr = obj.GetComponent<MeshRenderer>();
             if (mr && MaterialManager.instance) {
-                var keyGuideImage = controlsGuide.transform.GetChild(keyIdx).gameObject.GetComponent<Image>();
-                keyGuideImage.color = MaterialManager.instance.keyMats[keyIdx].color;
                 mr.sharedMaterial = MaterialManager.instance.keyMats[keyIdx];
             }
         }
