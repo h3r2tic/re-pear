@@ -196,6 +196,7 @@ public class ClicketyHandler : MonoBehaviour {
             joint.slerpDrive = drive;
         }
 
+
         // The linked bodies can sometimes explode physics with this
         /*// Wait a bit more, and completely fix the motion
         yield return new WaitForSeconds(0.5f);
