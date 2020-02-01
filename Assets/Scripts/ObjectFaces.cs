@@ -74,7 +74,6 @@ public class ObjectFaces : MonoBehaviour {
         var ray = this.transform.position - Camera.main.transform.position;
         ray.Normalize();
         if (Physics.Raycast(Camera.main.transform.position, ray, out hit, 10000.0f, 1)) {
-            Debug.Log(hit.transform.gameObject.name);
             if (hit.transform.root == this.transform.root) {
                 return false;
             } else {

@@ -16,6 +16,9 @@ public class RaceMode : MonoBehaviour {
 
     GameObject stopwatch;
 
+    public GameObject endStateUIPrefab;
+    GameObject endStateUIObject;
+
     void Start() {
         GameObject.Find("Stopwatch");
         this.stopwatch = GameObject.Find("Stopwatch");
@@ -33,7 +36,7 @@ public class RaceMode : MonoBehaviour {
         this.watch = FindObjectsOfType<MeasureTravelDistance>()[0];
         watch.Go();
         //
-        this.timer = 20.0f;
+        this.timer = 2.0f;
         this.pretimer = 2.0f;
         this.prepretimer = 0.5f;
         //expand the floor
@@ -81,9 +84,19 @@ public class RaceMode : MonoBehaviour {
     }
 
     void DisplayScore(float score) {
-        GameObject.Find("RaceText").GetComponent<Text>().enabled = true;
-        GameObject.Find("RaceText").GetComponent<Text>().text = "Distance traveled: " + score.ToString("0.00");
-        GameObject.Find("RaceText").GetComponent<Text>().fontSize = 60;
+        Cursor.visible = true;
+        this.endStateUIObject = Instantiate(this.endStateUIPrefab);
+        this.endStateUIObject.transform.Find("Canvas/Panel/Layout/Score").GetComponent<Text>().text = score.ToString("0.00");
+        //GameObject.Find("RaceText").GetComponent<Text>().enabled = true;
+        //GameObject.Find("RaceText").GetComponent<Text>().text = "Distance traveled: " + score.ToString("0.00");
+        //GameObject.Find("RaceText").GetComponent<Text>().fontSize = 60;
+    }
+
+    public void ClearEndStateUI() {
+        if (this.endStateUIObject) {
+            Destroy(this.endStateUIObject);
+            this.endStateUIObject = null;
+        }
     }
 
 }

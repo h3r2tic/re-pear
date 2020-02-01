@@ -6,13 +6,19 @@ using UnityEngine.SceneManagement;
 public class GameFlow : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.R)) {
-            Cursor.visible = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            FindObjectsOfType<RaceMode>()[0].ClearEndStateUI();
+            ReloadCurrentScene();
         }
     }
 
     public void LoadMainScene() {
         Cursor.visible = true;
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void ReloadCurrentScene() {
+        Cursor.visible = true;
+        FindObjectsOfType<RaceMode>()[0].ClearEndStateUI();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

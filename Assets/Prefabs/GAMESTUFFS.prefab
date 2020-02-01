@@ -84,6 +84,8 @@ MonoBehaviour:
   timer: 20
   pretimer: 2
   prepretimer: 0.3
+  endStateUIPrefab: {fileID: 7697400670430040858, guid: c3b9d946286ad4e28b141d6e893724cd,
+    type: 3}
 --- !u!1 &5769611248734882668
 GameObject:
   m_ObjectHideFlags: 0
