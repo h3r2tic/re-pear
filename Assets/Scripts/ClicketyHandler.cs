@@ -123,6 +123,8 @@ public class ClicketyHandler : MonoBehaviour {
             return;
         }
 
+        //Attach sound
+
         Quaternion backupRotation = draggedBody.transform.localRotation;
 
         Vector3 n1 = normalOnDraggedBody;
