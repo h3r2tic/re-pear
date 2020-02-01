@@ -37,7 +37,7 @@ public class ClicketyHandler : MonoBehaviour {
                 destroyCursorJoint();
             }
 
-            if (gotHit) {
+            if (gotHit && draggedBody) {
                 if (hit.rigidbody && canAttachObjects(draggedBody.transform, hit.transform)) {
                     this.onDragEnd(hit.rigidbody, hit.point, hit.normal);
                 }
