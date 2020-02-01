@@ -140,8 +140,8 @@ public class ClicketyHandler : MonoBehaviour {
     }
 
     void onObjectsAttached(GameObject a, GameObject b) {
-        var ac = a.GetComponent<Controllable>();
-        var bc = b.GetComponent<Controllable>();
+        var ac = a.transform.root.GetComponent<Controllable>();
+        var bc = b.transform.root.GetComponent<Controllable>();
 
         if (ac && !ac.isConnected) {
             ObjectSpawner.instance.disconnectedCount -= 1;
