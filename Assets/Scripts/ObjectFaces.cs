@@ -10,6 +10,7 @@ public class ObjectFaces : MonoBehaviour {
 
     public Material happyMaterial;
     public Material surprisedMaterial;
+    public Material anguishedMaterial;
 
     bool isDragged = false;
     float switchCoolDown = 0.0f;
@@ -33,10 +34,24 @@ public class ObjectFaces : MonoBehaviour {
         this.planeObj.transform.position = this.transform.position - new Vector3(0.0f, 0.0f, 0.0f);
 
         CheckIfDragged();
+        CheckForTerror();
+
         if (CheckIfObscured()) {
             this.planeObj.SetActive(false);
         } else {
             this.planeObj.SetActive(true);
+        }
+    }
+
+    void CheckForTerror() {
+        if (TerrorScript.timeSinceAccident < 2.0f) {
+            this.planeObj.GetComponent<Renderer>().material = this.anguishedMaterial;
+        }
+    }
+
+    void OnDestroy() {
+        if (this.planeObj) {
+            Destroy(this.planeObj);
         }
     }
 

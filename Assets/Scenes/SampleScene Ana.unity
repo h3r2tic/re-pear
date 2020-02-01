@@ -143,6 +143,7 @@ MonoBehaviour:
     type: 3}
   happyMaterial: {fileID: 2100000, guid: ea05e09d45877a644be4f4d7b8033d56, type: 2}
   surprisedMaterial: {fileID: 2100000, guid: 0f363bda46ea380488eb3ac3569f009e, type: 2}
+  anguishedMaterial: {fileID: 2100000, guid: 39d4359201d4cb44d9923e9ccc751482, type: 2}
 --- !u!1 &170346189
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +283,7 @@ MonoBehaviour:
     type: 3}
   happyMaterial: {fileID: 2100000, guid: ea05e09d45877a644be4f4d7b8033d56, type: 2}
   surprisedMaterial: {fileID: 2100000, guid: 0f363bda46ea380488eb3ac3569f009e, type: 2}
+  anguishedMaterial: {fileID: 0}
 --- !u!1 &203159632 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5769611248229961302, guid: 16bcdab13ce9d4f4395e68b05c863ef1,
@@ -325,6 +327,7 @@ MonoBehaviour:
     type: 3}
   happyMaterial: {fileID: 2100000, guid: ea05e09d45877a644be4f4d7b8033d56, type: 2}
   surprisedMaterial: {fileID: 2100000, guid: 0f363bda46ea380488eb3ac3569f009e, type: 2}
+  anguishedMaterial: {fileID: 2100000, guid: 39d4359201d4cb44d9923e9ccc751482, type: 2}
 --- !u!1 &310134300 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3450793761632431388, guid: bcaabbb8ff33b2c46bd73fe7106bc671,
@@ -347,6 +350,7 @@ MonoBehaviour:
     type: 3}
   happyMaterial: {fileID: 2100000, guid: ea05e09d45877a644be4f4d7b8033d56, type: 2}
   surprisedMaterial: {fileID: 2100000, guid: 0f363bda46ea380488eb3ac3569f009e, type: 2}
+  anguishedMaterial: {fileID: 2100000, guid: 39d4359201d4cb44d9923e9ccc751482, type: 2}
 --- !u!1 &408332864
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ba190e296b11544c8a025e23ecc27b0, type: 3}
---- !u!84 &699238529
+--- !u!84 &695071813
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -900,7 +904,7 @@ MonoBehaviour:
   PCF_GradientBias: 0.07
   CascadeBlendDistance: 0
   supportOrthographicProjection: 0
-  shadowRenderTexture: {fileID: 699238529}
+  shadowRenderTexture: {fileID: 695071813}
   format: 14
   filterMode: 2
   MSAA: 1
@@ -989,6 +993,24 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d8daeca83adc1fd488d45f6dea9b51c6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcaabbb8ff33b2c46bd73fe7106bc671, type: 3}
+--- !u!1 &833660146 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5974574425498380405, guid: 16bcdab13ce9d4f4395e68b05c863ef1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1051266969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &833660148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833660146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0179030f73cdd7d4e86612ddaec5a049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1034155622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3450793761632431388, guid: bcaabbb8ff33b2c46bd73fe7106bc671,
@@ -1011,6 +1033,7 @@ MonoBehaviour:
     type: 3}
   happyMaterial: {fileID: 2100000, guid: ea05e09d45877a644be4f4d7b8033d56, type: 2}
   surprisedMaterial: {fileID: 2100000, guid: 0f363bda46ea380488eb3ac3569f009e, type: 2}
+  anguishedMaterial: {fileID: 2100000, guid: 39d4359201d4cb44d9923e9ccc751482, type: 2}
 --- !u!1 &1050522059 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6553911396165342966, guid: 6dccce4f80746a44aacbf00b41ce9f8a,
@@ -1033,6 +1056,7 @@ MonoBehaviour:
     type: 3}
   happyMaterial: {fileID: 2100000, guid: ea05e09d45877a644be4f4d7b8033d56, type: 2}
   surprisedMaterial: {fileID: 2100000, guid: 0f363bda46ea380488eb3ac3569f009e, type: 2}
+  anguishedMaterial: {fileID: 2100000, guid: 39d4359201d4cb44d9923e9ccc751482, type: 2}
 --- !u!1001 &1051266969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1268,6 +1292,7 @@ MonoBehaviour:
     type: 3}
   happyMaterial: {fileID: 2100000, guid: ea05e09d45877a644be4f4d7b8033d56, type: 2}
   surprisedMaterial: {fileID: 2100000, guid: 0f363bda46ea380488eb3ac3569f009e, type: 2}
+  anguishedMaterial: {fileID: 0}
 --- !u!1 &1613279613
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,6 +1643,7 @@ MonoBehaviour:
     type: 3}
   happyMaterial: {fileID: 2100000, guid: ea05e09d45877a644be4f4d7b8033d56, type: 2}
   surprisedMaterial: {fileID: 2100000, guid: 0f363bda46ea380488eb3ac3569f009e, type: 2}
+  anguishedMaterial: {fileID: 0}
 --- !u!1001 &2024781417
 PrefabInstance:
   m_ObjectHideFlags: 0
