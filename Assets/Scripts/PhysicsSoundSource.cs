@@ -8,7 +8,7 @@ public class PhysicsSoundSource : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         AudioClip clip = null;
-        if (collision.impulse.magnitude > 0.5f) {
+        if (collision.impulse.magnitude > 0.25f) {
             clip = soundSys.getRandomClip();
         }
 

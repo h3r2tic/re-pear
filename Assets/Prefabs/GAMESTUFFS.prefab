@@ -127,8 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: f00e107eb73c7d84db5f2e3d3eab2df9, type: 3}
-  - {fileID: 8300000, guid: a532297a3ed764a818dbb15c79c3ba4f, type: 3}
+  - {fileID: 8300000, guid: 446de11c57acf0843be3b49386c41456, type: 3}
+  - {fileID: 8300000, guid: 2385dbe24df06a44397d47115ddce008, type: 3}
+  - {fileID: 8300000, guid: b929c8ef0ec83eb4cb6c4551bffe1822, type: 3}
 --- !u!1 &5769611248780424208
 GameObject:
   m_ObjectHideFlags: 0
