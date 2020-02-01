@@ -5,6 +5,8 @@ using UnityEngine;
 public class ClicketyHandler : MonoBehaviour {
     public Transform cursorObject;
     public GameObject attachmentPreviewPrefab;
+    public Material activeDragWireMaterial;
+    public Material inertDragWireMaterial;
     private LineRenderer cursorLineRenderer;
     private ConfigurableJoint cursorJoint;
 
@@ -39,7 +41,7 @@ public class ClicketyHandler : MonoBehaviour {
             }
 
             if (gotHit && draggedBody) {
-                if (hit.rigidbody && canAttachObjects(draggedBody.transform, hit.transform)) {
+                if (canAttachObjects(draggedBody.transform, hit.transform)) {
                     this.onDragEnd(hit.rigidbody, hit.point, hit.normal);
                 }
             }
@@ -53,6 +55,14 @@ public class ClicketyHandler : MonoBehaviour {
     }
 
     bool canAttachObjects(Transform a, Transform b) {
+        if (!a.GetComponent<Rigidbody>()) {
+            return false;
+        }
+
+        if (!b.GetComponent<Rigidbody>()) {
+            return false;
+        }
+
         return !doObjectHaveSameAncestor(a, b);
     }
 
@@ -76,16 +86,27 @@ public class ClicketyHandler : MonoBehaviour {
         cursorLineRenderer.SetPositions(new Vector3[] { v1, v2 });
 
         // Show attachment preview
-        if (attachmentPreviewPrefab && canAttachObjects(draggedBody.transform, hit.transform)) {
-            var meshFilter = attachmentPreviewPrefab.GetComponent<MeshFilter>();
-            var meshRenderer = attachmentPreviewPrefab.GetComponent<MeshRenderer>();
+        if (canAttachObjects(draggedBody.transform, hit.transform)) {
 
-            Quaternion rotation = Quaternion.LookRotation(hit.normal) * attachmentPreviewPrefab.transform.localRotation;
+            if (attachmentPreviewPrefab) {
+                var meshFilter = attachmentPreviewPrefab.GetComponent<MeshFilter>();
+                var meshRenderer = attachmentPreviewPrefab.GetComponent<MeshRenderer>();
 
-            Matrix4x4 m = Matrix4x4.identity;
-            m.SetTRS(cursorObject.position, rotation, attachmentPreviewPrefab.transform.localScale);
+                Quaternion rotation = Quaternion.LookRotation(hit.normal) * attachmentPreviewPrefab.transform.localRotation;
 
-            Graphics.DrawMesh(meshFilter.sharedMesh, m, meshRenderer.sharedMaterial, 0);
+                Matrix4x4 m = Matrix4x4.identity;
+                m.SetTRS(cursorObject.position, rotation, attachmentPreviewPrefab.transform.localScale);
+
+                Graphics.DrawMesh(meshFilter.sharedMesh, m, meshRenderer.sharedMaterial, 0);
+            }
+
+            if (this.activeDragWireMaterial) {
+                cursorLineRenderer.sharedMaterial = this.activeDragWireMaterial;
+            }
+        } else {
+            if (this.inertDragWireMaterial) {
+                cursorLineRenderer.sharedMaterial = this.inertDragWireMaterial;
+            }
         }
     }
 
