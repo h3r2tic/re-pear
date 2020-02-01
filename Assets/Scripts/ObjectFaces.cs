@@ -56,14 +56,15 @@ public class ObjectFaces : MonoBehaviour {
     bool CheckIfObscured() {
         RaycastHit hit;
         //TODO: make it shoot ray from the camera towards the object and check whether it hit the most parent obj in the hierarchy
-        var ray = Camera.main.transform.position - this.transform.position;
+        var ray = this.transform.position - Camera.main.transform.position;
         ray.Normalize();
-        if (Physics.Raycast(this.transform.position + ray * 0.1f, ray, out hit, 10000.0f, 1)) {
-            //RaycastHit hit2;
-            //if (Physics.Raycast(hit.point, ray, out hit2, 10000.0f)) {
-            return true;
-            //}
-
+        if (Physics.Raycast(Camera.main.transform.position, ray, out hit, 10000.0f, 1)) {
+            Debug.Log(hit.transform.gameObject.name);
+            if (hit.transform.root == this.transform.root) {
+                return false;
+            } else {
+                return true;
+            }
         }
         return false;
     }
