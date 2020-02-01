@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 402072ca32cc9e142bb5f6916c7e7075, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.2139894, g: 0.19763193, b: 0.12854032, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -220,7 +220,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -606,7 +606,7 @@ Transform:
   m_GameObject: {fileID: 1613279613}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 15, y: 1, z: 15}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -1166,6 +1166,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2901956133879786625, guid: 5e33a5414ea48f748bbd2612b98af5d6,
+        type: 3}
+      propertyPath: clipPlaneBounds
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2901956133879786626, guid: 5e33a5414ea48f748bbd2612b98af5d6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1174,7 +1179,7 @@ PrefabInstance:
     - target: {fileID: 2901956133879786626, guid: 5e33a5414ea48f748bbd2612b98af5d6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 34.202023
+      value: 35.202023
       objectReference: {fileID: 0}
     - target: {fileID: 2901956133879786626, guid: 5e33a5414ea48f748bbd2612b98af5d6,
         type: 3}
@@ -1220,6 +1225,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901956133879786629, guid: 5e33a5414ea48f748bbd2612b98af5d6,
+        type: 3}
+      propertyPath: near clip plane
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901956133879786629, guid: 5e33a5414ea48f748bbd2612b98af5d6,
+        type: 3}
+      propertyPath: far clip plane
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 2901956133879786631, guid: 5e33a5414ea48f748bbd2612b98af5d6,
         type: 3}

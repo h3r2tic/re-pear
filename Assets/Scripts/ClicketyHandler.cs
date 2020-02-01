@@ -38,7 +38,7 @@ public class ClicketyHandler : MonoBehaviour {
             }
 
             if (gotHit) {
-                if (hit.rigidbody) {
+                if (hit.rigidbody && canAttachObjects(draggedBody.transform, hit.transform)) {
                     this.onDragEnd(hit.rigidbody, hit.point, hit.normal);
                 }
             }
@@ -49,6 +49,24 @@ public class ClicketyHandler : MonoBehaviour {
         if (draggedBody) {
             onDragContinue();
         }
+    }
+
+    bool canAttachObjects(Transform a, Transform b) {
+        return !doObjectHaveSameAncestor(a, b);
+    }
+
+    bool doObjectHaveSameAncestor(Transform a, Transform b) {
+        var ap = a;
+        var bp = b;
+
+        while (ap.parent != null) {
+            ap = ap.parent;
+        }
+        while (bp.parent != null) {
+            bp = bp.parent;
+        }
+
+        return ap == bp;
     }
 
     void onDragContinue() {
@@ -112,6 +130,8 @@ public class ClicketyHandler : MonoBehaviour {
         joint.xDrive = drive;
         joint.yDrive = drive;
         joint.zDrive = drive;
+        joint.slerpDrive = drive;
+        joint.rotationDriveMode = RotationDriveMode.Slerp;
 
         this.cursorJoint = joint;
         cursorLineRenderer.enabled = true;
@@ -124,6 +144,7 @@ public class ClicketyHandler : MonoBehaviour {
     }
 
     private IEnumerator strengthenJoint(ConfigurableJoint joint) {
+        // Increase strength of the joint over time
         for (int i = 1; i <= 10; ++i) {
             yield return new WaitForSeconds(0.1f);
             float mult = (float)(i * i);
@@ -138,7 +159,8 @@ public class ClicketyHandler : MonoBehaviour {
             joint.slerpDrive = drive;
         }
 
-        // Wait a bit more, and completely fix the motion
+        // The linked bodies can sometimes explode physics with this
+        /*// Wait a bit more, and completely fix the motion
         yield return new WaitForSeconds(0.5f);
         joint.xMotion = ConfigurableJointMotion.Locked;
         joint.yMotion = ConfigurableJointMotion.Locked;
@@ -153,6 +175,6 @@ public class ClicketyHandler : MonoBehaviour {
             joint.yDrive = drive;
             joint.zDrive = drive;
             joint.slerpDrive = drive;
-        }
+        }*/
     }
 }
