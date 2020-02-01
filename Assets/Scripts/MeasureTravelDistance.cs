@@ -18,18 +18,6 @@ public class MeasureTravelDistance : MonoBehaviour {
 
     public float Stop() {
         this.isActive = false;
-        return this.distanceTraveled;
-    }
-
-    // Update is called once per frame
-    void Update() {
-        if (this.isActive) {
-            this.distanceTraveled += Vector3.Distance(centerOfMass.position, this.prevPos);
-            this.prevPos = centerOfMass.position;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            this.isActive = !this.isActive;
-        }
+        return Vector3.Distance(this.prevPos, this.centerOfMass.position);
     }
 }
