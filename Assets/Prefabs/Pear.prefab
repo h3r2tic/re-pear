@@ -128,6 +128,8 @@ MonoBehaviour:
     type: 3}
   pearsistentFace: {fileID: -5357273174162606428, guid: bd45cc45dd7f7164f94f2441de856b0a,
     type: 3}
+  surprisedFace: {fileID: -5357273174162606428, guid: c97b7da3adb8c64409142fb44715d760,
+    type: 3}
 --- !u!114 &3832134728726590409
 MonoBehaviour:
   m_ObjectHideFlags: 0
