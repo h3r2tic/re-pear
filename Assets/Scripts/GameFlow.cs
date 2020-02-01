@@ -9,4 +9,8 @@ public class GameFlow : MonoBehaviour {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+
+    public void LoadMainScene() {
+        SceneManager.LoadScene("SampleScene");
+    }
 }
