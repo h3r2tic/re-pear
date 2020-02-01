@@ -18,7 +18,7 @@ public class ObjectFaces : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        this.planeObj = Instantiate(this.planePrefab, this.transform.position - new Vector3(0.0f, 0.5f, 0.0f), Quaternion.identity);
+        this.planeObj = Instantiate(this.planePrefab, this.transform.position - new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
         this.planeObj.GetComponent<Renderer>().material = this.happyMaterial;
 
         parentCachePosition = this.transform.position;
@@ -30,9 +30,14 @@ public class ObjectFaces : MonoBehaviour {
         this.planeObj.transform.LookAt(Camera.main.transform);
         this.planeObj.transform.Rotate(planeRot.x, planeRot.y, planeRot.z, Space.Self);
 
-        this.planeObj.transform.position = this.transform.position - new Vector3(0.0f, 0.4f, 0.0f);
+        this.planeObj.transform.position = this.transform.position - new Vector3(0.0f, 0.0f, 0.0f);
 
         CheckIfDragged();
+        if (CheckIfObscured()) {
+            this.planeObj.SetActive(false);
+        } else {
+            this.planeObj.SetActive(true);
+        }
     }
 
     void CheckIfDragged() {
@@ -46,6 +51,21 @@ public class ObjectFaces : MonoBehaviour {
             this.planeObj.GetComponent<Renderer>().material = this.happyMaterial;
         }
         this.switchCoolDown -= Time.deltaTime;
+    }
+
+    bool CheckIfObscured() {
+        RaycastHit hit;
+        //TODO: make it shoot ray from the camera towards the object and check whether it hit the most parent obj in the hierarchy
+        var ray = Camera.main.transform.position - this.transform.position;
+        ray.Normalize();
+        if (Physics.Raycast(this.transform.position + ray * 0.1f, ray, out hit, 10000.0f, 1)) {
+            //RaycastHit hit2;
+            //if (Physics.Raycast(hit.point, ray, out hit2, 10000.0f)) {
+            return true;
+            //}
+
+        }
+        return false;
     }
 
 
