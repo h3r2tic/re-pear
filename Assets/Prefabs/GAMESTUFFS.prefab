@@ -350,6 +350,7 @@ GameObject:
   - component: {fileID: 1198748020767912893}
   - component: {fileID: 6610377055802535119}
   - component: {fileID: 3806501974896737116}
+  - component: {fileID: 5444484752002613330}
   m_Layer: 0
   m_Name: TerrorPool
   m_TagString: Untagged
@@ -501,6 +502,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5444484752002613330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5974574425498380405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0179030f73cdd7d4e86612ddaec5a049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7398547567978956107
 GameObject:
   m_ObjectHideFlags: 0
