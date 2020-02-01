@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HappyFace
+  m_Name: SurprisedFace
   m_Shader: {fileID: 4800000, guid: 9dda90c5524ad70479c60a16fa928e86, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
