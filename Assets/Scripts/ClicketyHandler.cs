@@ -63,21 +63,7 @@ public class ClicketyHandler : MonoBehaviour {
             return false;
         }
 
-        return !doObjectHaveSameAncestor(a, b);
-    }
-
-    bool doObjectHaveSameAncestor(Transform a, Transform b) {
-        var ap = a;
-        var bp = b;
-
-        while (ap.parent != null) {
-            ap = ap.parent;
-        }
-        while (bp.parent != null) {
-            bp = bp.parent;
-        }
-
-        return ap == bp;
+        return a.root != b.root;
     }
 
     void onDragContinue(RaycastHit hit) {
@@ -149,6 +135,23 @@ public class ClicketyHandler : MonoBehaviour {
         draggedBody.transform.localRotation = backupRotation;
 
         StartCoroutine(strengthenJoint(joint));
+
+        onObjectsAttached(body.gameObject, draggedBody.gameObject);
+    }
+
+    void onObjectsAttached(GameObject a, GameObject b) {
+        var ac = a.GetComponent<Controllable>();
+        var bc = b.GetComponent<Controllable>();
+
+        if (ac && !ac.isConnected) {
+            ObjectSpawner.instance.disconnectedCount -= 1;
+            ac.isConnected = true;
+        }
+
+        if (bc && !bc.isConnected) {
+            ObjectSpawner.instance.disconnectedCount -= 1;
+            bc.isConnected = true;
+        }
     }
 
     void createCursorJoint() {
@@ -182,16 +185,18 @@ public class ClicketyHandler : MonoBehaviour {
         // Increase strength of the joint over time
         for (int i = 1; i <= 10; ++i) {
             yield return new WaitForSeconds(0.1f);
-            float mult = (float)(i * i);
+            if (joint) {
+                float mult = (float)(i * i);
 
-            var drive = new JointDrive();
-            drive.maximumForce = 10.0f * mult;
-            drive.positionDamper = 10.0f;
-            drive.positionSpring = 10.0f * mult;
-            joint.xDrive = drive;
-            joint.yDrive = drive;
-            joint.zDrive = drive;
-            joint.slerpDrive = drive;
+                var drive = new JointDrive();
+                drive.maximumForce = 10.0f * mult;
+                drive.positionDamper = 10.0f;
+                drive.positionSpring = 10.0f * mult;
+                joint.xDrive = drive;
+                joint.yDrive = drive;
+                joint.zDrive = drive;
+                joint.slerpDrive = drive;
+            }
         }
 
         // The linked bodies can sometimes explode physics with this

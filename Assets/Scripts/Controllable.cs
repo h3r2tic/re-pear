@@ -12,10 +12,19 @@ public class Controllable : MonoBehaviour {
     KeyCode myKey;
     List<IControlHandler> controlHandlers;
 
+    static int nextColor = 0;
+    public bool isConnected = false;
+
     private void getDescendants(Transform parent, List<GameObject> list) {
         foreach (Transform child in parent) {
             list.Add(child.gameObject);
             getDescendants(child, list);
+        }
+    }
+
+    void Awake() {
+        if (ObjectSpawner.instance) {
+            ObjectSpawner.instance.disconnectedCount += 1;
         }
     }
 
@@ -34,7 +43,7 @@ public class Controllable : MonoBehaviour {
 
         var controlsGuide = GameObject.Find("ControlsGuide");
         var keys = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4 };
-        var keyIdx = Random.Range(0, 4);
+        var keyIdx = nextColor++ % 4;
         this.myKey = keys[keyIdx];
 
         var keyGuideImage = controlsGuide.transform.GetChild(keyIdx).gameObject.GetComponent<Image>();
@@ -47,6 +56,7 @@ public class Controllable : MonoBehaviour {
             }
         }
     }
+
     void Update() {
         if (Input.GetKey(myKey)) {
             foreach (var h in this.controlHandlers) {
@@ -55,6 +65,15 @@ public class Controllable : MonoBehaviour {
         } else {
             foreach (var h in this.controlHandlers) {
                 h.onInputActive(false);
+            }
+        }
+    }
+
+    void OnDestroy() {
+        // We need a replacement!
+        if (ObjectSpawner.instance) {
+            if (!isConnected) {
+                ObjectSpawner.instance.disconnectedCount -= 1;
             }
         }
     }
