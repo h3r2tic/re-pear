@@ -47,6 +47,10 @@ public class ClicketyHandler : MonoBehaviour {
                 destroyCursorJoint();
             }
 
+            if (draggedBody) {
+                setLayerOnAllRecursive(draggedBody.transform.root.gameObject, LayerMask.NameToLayer("Default"));
+            }
+
             if (gotHit && draggedBody) {
                 if (canAttachObjects(draggedBody.transform, hit.transform)) {
                     this.onDragEnd(hit.rigidbody, hit.point, hit.normal);
@@ -78,6 +82,18 @@ public class ClicketyHandler : MonoBehaviour {
         var v2 = cursorObject.position;
         cursorLineRenderer.SetPositions(new Vector3[] { v1, v2 });
 
+        {
+            Quaternion rotation = draggedBody.rotation * Quaternion.LookRotation(normalOnDraggedBody) * attachmentPreviewPrefab.transform.localRotation;
+            Matrix4x4 m = Matrix4x4.identity;
+            m.SetTRS(v1, rotation, attachmentPreviewPrefab.transform.localScale);
+
+            var meshFilter = attachmentPreviewPrefab.GetComponent<MeshFilter>();
+            var meshRenderer = attachmentPreviewPrefab.GetComponent<MeshRenderer>();
+
+            Graphics.DrawMesh(meshFilter.sharedMesh, m, meshRenderer.sharedMaterial, 0);
+        }
+
+
         // Show attachment preview
         if (canAttachObjects(draggedBody.transform, hit.transform)) {
 
@@ -103,10 +119,19 @@ public class ClicketyHandler : MonoBehaviour {
         }
     }
 
+    static void setLayerOnAllRecursive(GameObject obj, int layer) {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform) {
+            setLayerOnAllRecursive(child.gameObject, layer);
+        }
+    }
+
     void onDragStart(Rigidbody body, Vector3 worldPos, Vector3 worldNormal) {
         draggedBody = body;
         pointOnDraggedBody = body.transform.InverseTransformPoint(worldPos);
         normalOnDraggedBody = body.transform.InverseTransformVector(worldNormal);
+
+        setLayerOnAllRecursive(body.transform.root.gameObject, LayerMask.NameToLayer("DraggedObject"));
 
         createCursorJoint();
     }
