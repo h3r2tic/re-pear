@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class TutorialFlow : MonoBehaviour
-{
+public class TutorialFlow : MonoBehaviour {
     private int tutorialStep = 0;
     public GameObject mainUI;
     public Text textComponent;
@@ -19,7 +18,7 @@ public class TutorialFlow : MonoBehaviour
     private List<string> tutorialInstructions = new List<string>() {
         "Look around!",
         "Click and drag to construct.",
-        "Some objects are special!",
+        "Objects are activated by the key of same color!",
         "Oops! Undo that last move.",
         "When you're ready, you can test your creation!",
         "You'll have 30 seconds to move as far as possible!"
@@ -48,25 +47,20 @@ public class TutorialFlow : MonoBehaviour
     public void NextStep() {
         if (tutorialStep == 0) {
             this.cameraGuide.SetActive(true);
-        }
-        else if (tutorialStep == 1) {
+        } else if (tutorialStep == 1) {
             this.cameraGuide.GetComponent<Blink>().StopBlink();
-        }
-        else if (tutorialStep == 2) {
+        } else if (tutorialStep == 2) {
             this.controlsGuide.SetActive(true);
-        }
-        else if (tutorialStep == 3) {
+        } else if (tutorialStep == 3) {
             this.undoButton.SetActive(true);
             var childBlinks = this.controlsGuide.GetComponentsInChildren<Blink>();
             foreach (Blink blink in childBlinks) {
                 blink.StopBlink();
             }
-        }
-        else if (tutorialStep == 4) {
+        } else if (tutorialStep == 4) {
             this.playButton.SetActive(true);
             this.undoButton.GetComponent<Blink>().StopBlink();
-        }
-        else if (tutorialStep == 5) {
+        } else if (tutorialStep == 5) {
             this.stopwatch.SetActive(true);
             this.playButton.GetComponent<Blink>().StopBlink();
         }
