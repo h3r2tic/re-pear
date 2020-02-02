@@ -6,19 +6,30 @@ using UnityEngine.Rendering.PostProcessing;
 [RequireComponent(typeof(PostProcessVolume))]
 public class PostProcessQualityController : MonoBehaviour {
     public List<PostProcessProfile> profiles = new List<PostProcessProfile>();
+    int prevQualityLevel = -1;
 
-    // Start is called before the first frame update
-    void Start() {
+    void Update() {
         int qualityLevel = QualitySettings.GetQualityLevel();
-        Debug.Log("current quality level: " + qualityLevel);
+        if (qualityLevel != prevQualityLevel) {
+            prevQualityLevel = qualityLevel;
+            Debug.Log("current quality level: " + qualityLevel);
 
-        if (qualityLevel < 2) {
+            bool ultra = qualityLevel >= 3;
+
             var ssrt = GetComponent<SSRT>();
             if (ssrt) {
-                ssrt.enabled = false;
+                ssrt.enabled = qualityLevel >= 2;
+                ssrt.resolutionDownscale = ultra ? SSRT.ResolutionDownscale.Full : SSRT.ResolutionDownscale.Half;
+                ssrt.stepCount = ultra ? 8 : 4;
             }
-        }
 
-        GetComponent<PostProcessVolume>().profile = this.profiles[qualityLevel];
+            var sun = FindObjectOfType<PCSSLight>();
+            if (sun) {
+                sun.Blocker_SampleCount = ultra ? 12 : 4;
+                sun.UpdateShaderValues();
+            }
+
+            GetComponent<PostProcessVolume>().profile = this.profiles[qualityLevel];
+        }
     }
 }
