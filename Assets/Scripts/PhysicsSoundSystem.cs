@@ -13,4 +13,9 @@ public class PhysicsSoundSystem : MonoBehaviour {
             return null;
         }
     }
+
+    public static PhysicsSoundSystem instance;
+    void Awake() {
+        instance = this;
+    }
 }

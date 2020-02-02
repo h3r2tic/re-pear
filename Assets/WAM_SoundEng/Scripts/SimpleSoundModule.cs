@@ -40,8 +40,9 @@ public class SimpleSoundModule : MonoBehaviour {
         }
 
         if (GetComponent<AudioSource>() == null) gameObject.AddComponent<AudioSource>();
-
         source = GetComponents<AudioSource>()[AudioSourceNo];
+
+        //source = gameObject.AddComponent<AudioSource>();
         source.clip = clip;
         clipLength = clip.length;
     }
