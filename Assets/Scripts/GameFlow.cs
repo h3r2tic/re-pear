@@ -38,6 +38,6 @@ public class GameFlow : MonoBehaviour {
 
     public void DelayedRestart() {
         this.isDelayedRestart = true;
-        this.countdown = 2.0f;
+        this.countdown = 3.0f;
     }
 }
