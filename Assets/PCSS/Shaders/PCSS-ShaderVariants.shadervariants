@@ -23,6 +23,8 @@ ShaderVariantCollection:
         passType: 0
       - keywords: POISSON_64 USE_BLOCKER_BIAS USE_CASCADE_BLENDING USE_FALLOFF
         passType: 0
+      - keywords: POISSON_32 USE_BLOCKER_BIAS USE_FALLOFF USE_PCF_BIAS
+        passType: 0
       - keywords: POISSON_64 USE_BLOCKER_BIAS USE_CASCADE_BLENDING USE_FALLOFF USE_STATIC_BIAS
         passType: 0
       - keywords: USE_BLOCKER_BIAS USE_FALLOFF USE_PCF_BIAS
@@ -32,6 +34,8 @@ ShaderVariantCollection:
       - keywords: POISSON_64 USE_BLOCKER_BIAS USE_FALLOFF USE_PCF_BIAS
         passType: 0
       - keywords: POISSON_64 USE_BLOCKER_BIAS USE_CASCADE_BLENDING USE_FALLOFF USE_PCF_BIAS
+        passType: 0
+      - keywords: POISSON_32 USE_BLOCKER_BIAS USE_FALLOFF USE_PCF_BIAS USE_STATIC_BIAS
         passType: 0
       - keywords: ORTHOGRAPHIC_SUPPORTED POISSON_64 USE_BLOCKER_BIAS USE_FALLOFF USE_PCF_BIAS
         passType: 0

@@ -14,7 +14,8 @@ public class ArmBendBehavior : MonoBehaviour, IControlHandler {
     }
 
     void Update() {
-        float targetRot = this.flex ? 60.0f : 0.0f;
+        bool mode = this.flex ^ WutBehavior.isClose(this.transform);
+        float targetRot = mode ? 60.0f : 0.0f;
 
         joint.targetRotation = Quaternion.Euler(targetRot, 0.0f, 0.0f);
 

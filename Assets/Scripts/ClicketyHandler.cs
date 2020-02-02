@@ -14,6 +14,13 @@ public class ClicketyHandler : MonoBehaviour {
     private Vector3 pointOnDraggedBody;
     private Vector3 normalOnDraggedBody;
 
+    List<Joint> recentlyCreatedJoints = new List<Joint>();
+
+    public static ClicketyHandler instance;
+    void Awake() {
+        instance = this;
+    }
+
     void Start() {
         cursorLineRenderer = cursorObject.GetComponent<LineRenderer>();
     }
@@ -44,6 +51,10 @@ public class ClicketyHandler : MonoBehaviour {
         if (Input.GetMouseButtonUp(0)) {
             if (cursorJoint) {
                 destroyCursorJoint();
+            }
+
+            if (draggedBody) {
+                setLayerOnAllRecursive(draggedBody.transform.root.gameObject, LayerMask.NameToLayer("Default"));
             }
 
             if (gotHit && draggedBody) {
@@ -84,27 +95,25 @@ public class ClicketyHandler : MonoBehaviour {
             return false;
         }
 
-        return !doObjectHaveSameAncestor(a, b);
-    }
-
-    bool doObjectHaveSameAncestor(Transform a, Transform b) {
-        var ap = a;
-        var bp = b;
-
-        while (ap.parent != null) {
-            ap = ap.parent;
-        }
-        while (bp.parent != null) {
-            bp = bp.parent;
-        }
-
-        return ap == bp;
+        return a.root != b.root;
     }
 
     void onDragContinue(RaycastHit hit) {
         var v1 = draggedBody.transform.TransformPoint(pointOnDraggedBody);
         var v2 = cursorObject.position;
         cursorLineRenderer.SetPositions(new Vector3[] { v1, v2 });
+
+        {
+            Quaternion rotation = draggedBody.rotation * Quaternion.LookRotation(normalOnDraggedBody) * attachmentPreviewPrefab.transform.localRotation;
+            Matrix4x4 m = Matrix4x4.identity;
+            m.SetTRS(v1, rotation, attachmentPreviewPrefab.transform.localScale);
+
+            var meshFilter = attachmentPreviewPrefab.GetComponent<MeshFilter>();
+            var meshRenderer = attachmentPreviewPrefab.GetComponent<MeshRenderer>();
+
+            Graphics.DrawMesh(meshFilter.sharedMesh, m, meshRenderer.sharedMaterial, 0);
+        }
+
 
         // Show attachment preview
         if (canAttachObjects(draggedBody.transform, hit.transform)) {
@@ -131,10 +140,19 @@ public class ClicketyHandler : MonoBehaviour {
         }
     }
 
+    static void setLayerOnAllRecursive(GameObject obj, int layer) {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform) {
+            setLayerOnAllRecursive(child.gameObject, layer);
+        }
+    }
+
     void onDragStart(Rigidbody body, Vector3 worldPos, Vector3 worldNormal) {
         draggedBody = body;
         pointOnDraggedBody = body.transform.InverseTransformPoint(worldPos);
         normalOnDraggedBody = body.transform.InverseTransformVector(worldNormal);
+
+        setLayerOnAllRecursive(body.transform.root.gameObject, LayerMask.NameToLayer("DraggedObject"));
 
         createCursorJoint();
     }
@@ -172,6 +190,73 @@ public class ClicketyHandler : MonoBehaviour {
         draggedBody.transform.localRotation = backupRotation;
 
         StartCoroutine(strengthenJoint(joint));
+
+        onObjectsAttached(joint, body.gameObject, draggedBody.gameObject);
+    }
+
+    void onObjectsAttached(ConfigurableJoint joint, GameObject a, GameObject b) {
+        var ac = a.transform.root.GetComponent<Controllable>();
+        var bc = b.transform.root.GetComponent<Controllable>();
+
+        if (ac) {
+            if (0 == ac.connectionCount) {
+                ObjectSpawner.instance.disconnectedCount -= 1;
+            }
+
+            ac.connectionCount += 1;
+        }
+
+        if (bc) {
+            if (0 == bc.connectionCount) {
+                ObjectSpawner.instance.disconnectedCount -= 1;
+            }
+
+            bc.connectionCount += 1;
+        }
+
+        this.recentlyCreatedJoints.Add(joint);
+    }
+
+    public void onUndoLastAction() {
+        if (this.recentlyCreatedJoints.Count > 0) {
+            int lastIdx = this.recentlyCreatedJoints.Count - 1;
+            var last = this.recentlyCreatedJoints[lastIdx];
+            this.recentlyCreatedJoints.RemoveAt(lastIdx);
+
+            if (last) {
+                var b0 = last.gameObject.GetComponent<Rigidbody>();
+                var b1 = last.connectedBody;
+
+                // Disconnect objects somewhat violently
+                if (b0 && b1) {
+                    var p0 = b0.transform.position;
+                    var p1 = b1.transform.position;
+                    var forceAxis = (p0 - p1).normalized;
+
+                    float scl = 200.0f;
+                    b0.AddForceAtPosition(forceAxis * scl, p0, ForceMode.Acceleration);
+                    b1.AddForceAtPosition(-forceAxis * scl, p1, ForceMode.Acceleration);
+                }
+
+                if (b0) {
+                    var bc = b0.transform.root.GetComponent<Controllable>();
+                    if (bc) {
+                        bc.connectionCount -= 1;
+                        bc.onDisconnected();
+                    }
+                }
+
+                if (b1) {
+                    var bc = b1.transform.root.GetComponent<Controllable>();
+                    if (bc) {
+                        bc.connectionCount -= 1;
+                        bc.onDisconnected();
+                    }
+                }
+
+                Destroy(last);
+            }
+        }
     }
 
     void createCursorJoint() {
@@ -205,16 +290,18 @@ public class ClicketyHandler : MonoBehaviour {
         // Increase strength of the joint over time
         for (int i = 1; i <= 10; ++i) {
             yield return new WaitForSeconds(0.1f);
-            float mult = (float)(i * i);
+            if (joint) {
+                float mult = (float)(i * i);
 
-            var drive = new JointDrive();
-            drive.maximumForce = 10.0f * mult;
-            drive.positionDamper = 10.0f;
-            drive.positionSpring = 10.0f * mult;
-            joint.xDrive = drive;
-            joint.yDrive = drive;
-            joint.zDrive = drive;
-            joint.slerpDrive = drive;
+                var drive = new JointDrive();
+                drive.maximumForce = 10.0f * mult;
+                drive.positionDamper = 10.0f;
+                drive.positionSpring = 10.0f * mult;
+                joint.xDrive = drive;
+                joint.yDrive = drive;
+                joint.zDrive = drive;
+                joint.slerpDrive = drive;
+            }
         }
 
 

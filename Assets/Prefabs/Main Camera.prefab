@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 2901956133879786624}
   - component: {fileID: 2901956133879786625}
   - component: {fileID: 2901956133879786638}
+  - component: {fileID: 3804869319657309322}
+  - component: {fileID: 6226270325818896063}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -29,8 +31,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2901956133879786631}
-  m_LocalRotation: {x: 0.16773126, y: -0.25488698, z: 0.044943444, w: 0.95125127}
-  m_LocalPosition: {x: 46.984634, y: 34.202023, z: -81.37976}
+  m_LocalRotation: {x: 0.16773129, y: -0.254887, z: 0.044943463, w: 0.95125127}
+  m_LocalPosition: {x: 46.984634, y: 35.202023, z: -81.37976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -138,13 +140,13 @@ MonoBehaviour:
   volumeTrigger: {fileID: 2901956133879786626}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 1
   antialiasingMode: 3
   temporalAntialiasing:
     jitterSpread: 0.75
-    sharpness: 0.25
+    sharpness: 0
     stationaryBlending: 0.75
     motionBlending: 0.5
   subpixelMorphologicalAntialiasing:
@@ -213,3 +215,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
+--- !u!114 &3804869319657309322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2901956133879786631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 93a397368038df34e92802ce677efc00, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!114 &6226270325818896063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2901956133879786631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5fc74c39844410469bdd80c548c7b02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profiles:
+  - {fileID: 11400000, guid: 88f2b341e35b65a4db3cef5fde7792f9, type: 2}
+  - {fileID: 11400000, guid: 88f2b341e35b65a4db3cef5fde7792f9, type: 2}
+  - {fileID: 11400000, guid: 93a397368038df34e92802ce677efc00, type: 2}
+  - {fileID: 11400000, guid: 93a397368038df34e92802ce677efc00, type: 2}

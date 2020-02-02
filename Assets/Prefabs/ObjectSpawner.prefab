@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4547357045654039953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5756752879694432725}
+  - component: {fileID: -7572697389237726749}
+  m_Layer: 0
+  m_Name: ObjectSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5756752879694432725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547357045654039953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7572697389237726749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547357045654039953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394d082c8e078f5408ccb91c970ce8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 6, z: 0}
+  spawnerExtents: {x: 3, y: 3}
+  prefabs:
+  - {fileID: 5502183461951736184, guid: bcaabbb8ff33b2c46bd73fe7106bc671, type: 3}
+  - {fileID: 59289147083136892, guid: ffb5115a029c2aa44b17c6a5f235e9fd, type: 3}
+  - {fileID: 6553911395643421520, guid: 6dccce4f80746a44aacbf00b41ce9f8a, type: 3}
+  - {fileID: 5502183461951736184, guid: bcaabbb8ff33b2c46bd73fe7106bc671, type: 3}
+  - {fileID: 59289147083136892, guid: ffb5115a029c2aa44b17c6a5f235e9fd, type: 3}
+  - {fileID: 6553911395643421520, guid: 6dccce4f80746a44aacbf00b41ce9f8a, type: 3}
+  - {fileID: 5015448596327542063, guid: 49b1afad8eecdbb428eb61ae40e29cf3, type: 3}
+  targetDisconnectedObjectCount: 3
+  disconnectedCount: 0

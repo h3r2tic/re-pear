@@ -15,10 +15,16 @@ public class RaceMode : MonoBehaviour {
     bool isActive = false;
 
     GameObject stopwatch;
+    GameObject undoButton;
+    GameObject nextButton;
+
+    public GameObject endStateUIPrefab;
+    GameObject endStateUIObject;
 
     void Start() {
-        GameObject.Find("Stopwatch");
         this.stopwatch = GameObject.Find("Stopwatch");
+        this.undoButton = GameObject.Find("UndoButton");
+        this.nextButton = GameObject.Find("NextButton");
 
         this.countdown = this.stopwatch.transform.GetChild(0).GetComponent<Text>();
         this.stopwatch.SetActive(false);
@@ -41,6 +47,9 @@ public class RaceMode : MonoBehaviour {
         ground.transform.localScale = new Vector3(300.0f, 1.0f, 300.0f);
         //
         GameObject.Find("RaceText").GetComponent<Text>().enabled = true;
+        //
+        this.undoButton.SetActive(false);
+        this.nextButton.SetActive(false);
 
     }
 
@@ -76,14 +85,34 @@ public class RaceMode : MonoBehaviour {
                 var newOffset = pear.transform.position + new Vector3(0, 1.0f, 0);
                 poc.worldOffset = Vector3.Lerp(newOffset, poc.worldOffset, Mathf.Exp(-2.0f * Time.deltaTime));
             }
+
+            if (pear) {
+                var shake = pear.GetComponent<PhysicsCameraShake>();
+                if (shake) {
+                    shake.enabled = true;
+                }
+            }
         }
 
     }
 
     void DisplayScore(float score) {
-        GameObject.Find("RaceText").GetComponent<Text>().enabled = true;
-        GameObject.Find("RaceText").GetComponent<Text>().text = "Distance traveled: " + score.ToString("0.00");
-        GameObject.Find("RaceText").GetComponent<Text>().fontSize = 60;
+        Cursor.visible = true;
+        this.endStateUIObject = Instantiate(this.endStateUIPrefab);
+        this.endStateUIObject.transform.Find("Canvas/Panel/Layout/Score").GetComponent<Text>().text = score.ToString("0.00");
+        //GameObject.Find("RaceText").GetComponent<Text>().enabled = true;
+        //GameObject.Find("RaceText").GetComponent<Text>().text = "Distance traveled: " + score.ToString("0.00");
+        //GameObject.Find("RaceText").GetComponent<Text>().fontSize = 60;
+    }
+
+    public void ClearEndStateUI() {
+        if (this.endStateUIObject) {
+            Destroy(this.endStateUIObject);
+            this.endStateUIObject = null;
+
+            this.undoButton.SetActive(true);
+            this.nextButton.SetActive(true);
+        }
     }
 
 }

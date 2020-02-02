@@ -12,7 +12,8 @@ public class PistonBehavior : MonoBehaviour, IControlHandler {
     }
 
     void Update() {
-        float targetPos = this.actuate ? -5.0f : 0.0f;
+        bool mode = this.actuate ^ WutBehavior.isClose(this.transform);
+        float targetPos = mode ? -5.0f : 0.0f;
         joint.targetPosition = new Vector3(targetPos, 0.0f, 0.0f);
 
         var offset = joint.transform.InverseTransformPoint(joint.connectedBody.transform.position);
