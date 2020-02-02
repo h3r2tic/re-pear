@@ -24,11 +24,13 @@ public class GameFlow : MonoBehaviour {
     }
 
     public void LoadMainScene() {
+        UISounds.instance.playSelectSound();
         Cursor.visible = true;
         SceneManager.LoadScene("MainScene");
     }
 
     public void ReloadCurrentScene() {
+        UISounds.instance.playSelectSound();
         Cursor.visible = true;
         FindObjectsOfType<RaceMode>()[0].ClearEndStateUI();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -45,6 +45,7 @@ public class TutorialFlow : MonoBehaviour {
     }
 
     public void NextStep() {
+        UISounds.instance.playSelectSound();
         if (tutorialStep == 0) {
             this.cameraGuide.SetActive(true);
         } else if (tutorialStep == 1) {
@@ -73,6 +74,7 @@ public class TutorialFlow : MonoBehaviour {
     }
 
     public void RestartTutorial() {
+        UISounds.instance.playSelectSound();
         Cursor.visible = true;
         tutorialStep = 0;
         SceneManager.LoadScene("TutorialScene");

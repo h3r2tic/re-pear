@@ -442,6 +442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5769611248734882659}
   - component: {fileID: 5769611248734882658}
+  - component: {fileID: 2881914605417532523}
   m_Layer: 0
   m_Name: SoundSystem
   m_TagString: Untagged
@@ -479,6 +480,22 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 446de11c57acf0843be3b49386c41456, type: 3}
   - {fileID: 8300000, guid: 2385dbe24df06a44397d47115ddce008, type: 3}
   - {fileID: 8300000, guid: b929c8ef0ec83eb4cb6c4551bffe1822, type: 3}
+--- !u!114 &2881914605417532523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5769611248734882668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a2fe55f4d4f48dfa3f558b21214b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  undo: {fileID: 8300000, guid: 06359b7281a07d340994afa831a1b7ff, type: 3}
+  select: {fileID: 8300000, guid: 34557386e65ec534b8b6c79c32d4a143, type: 3}
+  startRace: {fileID: 8300000, guid: fdaa7a24b80a5084f99d617e21fc5c78, type: 3}
+  output: {fileID: 721466355840392177}
 --- !u!1 &5769611248780424208
 GameObject:
   m_ObjectHideFlags: 0
