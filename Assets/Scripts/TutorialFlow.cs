@@ -70,11 +70,11 @@ public class TutorialFlow : MonoBehaviour
             this.stopwatch.SetActive(true);
             this.playButton.GetComponent<Blink>().StopBlink();
         }
-        if (tutorialStep < tutorialInstructions.Count - 1) {
+        if (tutorialStep <= tutorialInstructions.Count - 1) {
             textComponent.text = tutorialInstructions[tutorialStep];
             tutorialStep++;
         } else {
-            break;
+            SceneManager.LoadScene("MainScene");
         }
     }
 
