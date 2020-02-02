@@ -121,41 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!84 &121471768
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 0
-  m_ColorFormat: 49
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &170346189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,7 +987,7 @@ MonoBehaviour:
   PCF_GradientBias: 0.07
   CascadeBlendDistance: 0
   supportOrthographicProjection: 0
-  shadowRenderTexture: {fileID: 1551790409}
+  shadowRenderTexture: {fileID: 1652728198}
   format: 14
   filterMode: 2
   MSAA: 1
@@ -1155,7 +1120,7 @@ AudioSource:
   m_GameObject: {fileID: 850210666}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 510289916413559841, guid: 3c46ae6dc1b5aeb499f0f59597cb70c0,
+  OutputAudioMixerGroup: {fileID: 4043349415711191140, guid: e75d35384fd2b374c8136c482ffdea8a,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
@@ -1422,7 +1387,7 @@ AudioSource:
   m_GameObject: {fileID: 1186925039}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 510289916413559841, guid: 3c46ae6dc1b5aeb499f0f59597cb70c0,
+  OutputAudioMixerGroup: {fileID: 4043349415711191140, guid: e75d35384fd2b374c8136c482ffdea8a,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
@@ -1531,6 +1496,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 850210668, guid: bb494d895abef674f8849630defe8444, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 4043349415711191140, guid: e75d35384fd2b374c8136c482ffdea8a,
+        type: 2}
+    - target: {fileID: 1186925041, guid: bb494d895abef674f8849630defe8444, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 4043349415711191140, guid: e75d35384fd2b374c8136c482ffdea8a,
+        type: 2}
     - target: {fileID: 432925245510962485, guid: bb494d895abef674f8849630defe8444,
         type: 3}
       propertyPath: m_Volume
@@ -1540,7 +1515,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: 510289916413559841, guid: 3c46ae6dc1b5aeb499f0f59597cb70c0,
+      objectReference: {fileID: 4043349415711191140, guid: e75d35384fd2b374c8136c482ffdea8a,
         type: 2}
     - target: {fileID: 432925245510962486, guid: bb494d895abef674f8849630defe8444,
         type: 3}
@@ -1561,7 +1536,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: 510289916413559841, guid: 3c46ae6dc1b5aeb499f0f59597cb70c0,
+      objectReference: {fileID: 4043349415711191140, guid: e75d35384fd2b374c8136c482ffdea8a,
         type: 2}
     - target: {fileID: 432925245632725349, guid: bb494d895abef674f8849630defe8444,
         type: 3}
@@ -1577,7 +1552,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: 510289916413559841, guid: 3c46ae6dc1b5aeb499f0f59597cb70c0,
+      objectReference: {fileID: 4043349415711191140, guid: e75d35384fd2b374c8136c482ffdea8a,
         type: 2}
     - target: {fileID: 432925246142808701, guid: bb494d895abef674f8849630defe8444,
         type: 3}
@@ -1603,7 +1578,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: 510289916413559841, guid: 3c46ae6dc1b5aeb499f0f59597cb70c0,
+      objectReference: {fileID: 4043349415711191140, guid: e75d35384fd2b374c8136c482ffdea8a,
         type: 2}
     - target: {fileID: 432925246376897579, guid: bb494d895abef674f8849630defe8444,
         type: 3}
@@ -2019,41 +1994,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!84 &1551790409
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 0
-  m_ColorFormat: 49
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1613279613
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,6 +2086,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!84 &1652728198
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 1024
+  m_Height: 1024
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 0
+  m_ColorFormat: 49
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 2
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1906171451
 GameObject:
   m_ObjectHideFlags: 0
