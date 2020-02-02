@@ -31,6 +31,12 @@ public class ClicketyHandler : MonoBehaviour {
             if (gotHit) {
                 if (hit.rigidbody) {
                     this.onDragStart(hit.rigidbody, hit.point, hit.normal);
+                    //Audio Start Loop
+                    foreach(SimpleSoundModule sm in GetComponents<SimpleSoundModule>()) 
+                    {
+                        if (sm.SoundID == "SelectLoop") sm.PlayModule();
+                        if (sm.SoundID == "Click") sm.PlayModule();
+                    }
                 }
             }
         }
@@ -43,6 +49,21 @@ public class ClicketyHandler : MonoBehaviour {
             if (gotHit && draggedBody) {
                 if (canAttachObjects(draggedBody.transform, hit.transform)) {
                     this.onDragEnd(hit.rigidbody, hit.point, hit.normal);
+                    Debug.Log("Attached");
+                    //Audio End loop
+                    foreach (SimpleSoundModule sm in GetComponents<SimpleSoundModule>())
+                    {
+                        if (sm.SoundID == "SelectLoop") sm.StopModule();
+                        if (sm.SoundID == "Select") sm.PlayModule();
+                    }
+                }
+                else
+                {
+                    Debug.Log("Not attached");
+                    foreach (SimpleSoundModule sm in GetComponents<SimpleSoundModule>())
+                    {
+                        if (sm.SoundID == "SelectLoop") sm.StopModule();
+                    }
                 }
             }
 
