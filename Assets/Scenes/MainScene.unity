@@ -127,6 +127,41 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 5769611249463839483}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &380165355
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 1024
+  m_Height: 1024
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 0
+  m_ColorFormat: 49
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 2
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &408332864
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,41 +312,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d8daeca83adc1fd488d45f6dea9b51c6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcaabbb8ff33b2c46bd73fe7106bc671, type: 3}
---- !u!84 &458598246
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 0
-  m_ColorFormat: 49
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 2
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1001 &668838433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -497,7 +497,7 @@ MonoBehaviour:
   PCF_GradientBias: 0.07
   CascadeBlendDistance: 0
   supportOrthographicProjection: 0
-  shadowRenderTexture: {fileID: 458598246}
+  shadowRenderTexture: {fileID: 380165355}
   format: 14
   filterMode: 2
   MSAA: 1
@@ -1083,6 +1083,8 @@ MonoBehaviour:
   happyMaterial: {fileID: 2100000, guid: ea05e09d45877a644be4f4d7b8033d56, type: 2}
   surprisedMaterial: {fileID: 2100000, guid: 0f363bda46ea380488eb3ac3569f009e, type: 2}
   anguishedMaterial: {fileID: 2100000, guid: 39d4359201d4cb44d9923e9ccc751482, type: 2}
+  velocityThreshold: 0.2
+  faceLocalOffset: {x: 0, y: 0, z: 0}
 --- !u!64 &1944258894
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1403,6 +1405,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1777641243, guid: 5e33a5414ea48f748bbd2612b98af5d6, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -5962917140261987591, guid: e75d35384fd2b374c8136c482ffdea8a,
+        type: 2}
     - target: {fileID: 2901956133879786626, guid: 5e33a5414ea48f748bbd2612b98af5d6,
         type: 3}
       propertyPath: m_LocalPosition.x
