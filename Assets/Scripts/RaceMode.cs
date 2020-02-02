@@ -68,7 +68,7 @@ public class RaceMode : MonoBehaviour {
                 this.stopwatch.SetActive(true);
 
                 this.timer -= Time.deltaTime;
-                this.countdown.text = this.timer.ToString("0.0");
+                this.countdown.text = Mathf.Max(this.timer, 0.0f).ToString("0.0");
 
                 if (this.timer < 0.0f) {
                     var score = this.watch.Stop();
