@@ -19,6 +19,10 @@ public class ObjectFaces : MonoBehaviour {
     float switchCoolDown = 0.0f;
     int visibilityMask = 1;
 
+    bool hasSwitchedState = false;
+    bool prevStateCahce = false;
+    float timeSinceChangedStates = 0.0f;
+
     Vector3 parentCachePosition;
 
     // Start is called before the first frame update
@@ -39,6 +43,11 @@ public class ObjectFaces : MonoBehaviour {
         this.planeObj.transform.position = this.transform.position + this.transform.TransformVector(this.faceLocalOffset);
 
         CheckIfDragged();
+        CheckForStateChange();
+        if (this.hasSwitchedState) {
+            VocTrig.PlayVoc();
+        }
+
         CheckForTerror();
 
         if (CheckIfObscured()) {
@@ -56,6 +65,21 @@ public class ObjectFaces : MonoBehaviour {
         }
     }
 
+    void CheckForStateChange() {
+        if (this.timeSinceChangedStates > Random.Range(2.0f, 3.0f) && Input.GetMouseButton(0)) {
+            this.hasSwitchedState = false;
+            if (this.isDragged == true && this.prevStateCahce == false) {
+                this.hasSwitchedState = true;
+                this.timeSinceChangedStates = 0.0f;
+            }
+            this.prevStateCahce = this.isDragged;
+        } else {
+            this.hasSwitchedState = false;
+            this.prevStateCahce = this.isDragged;
+        }
+        this.timeSinceChangedStates += Time.deltaTime;
+    }
+
     void OnDestroy() {
         if (this.planeObj) {
             Destroy(this.planeObj);
@@ -68,9 +92,6 @@ public class ObjectFaces : MonoBehaviour {
             this.parentCachePosition = this.transform.position;
             this.planeObj.GetComponent<Renderer>().material = this.surprisedMaterial;
             this.switchCoolDown = 0.2f;
-
-            if (Random.Range(0, 500) < 2) VocTrig.PlayVoc();
-
         } else if (this.switchCoolDown < 0.0f) {
             this.isDragged = false;
             this.planeObj.GetComponent<Renderer>().material = this.happyMaterial;
