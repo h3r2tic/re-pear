@@ -22,6 +22,12 @@ public class BalloonFloatBehavior : MonoBehaviour {
         }
 
         lineRenderer.SetPositions(new Vector3[] { floatyBit.transform.position, baseBit.transform.position });
+    }
+
+    void FixedUpdate() {
+        if (!floatyBit || !baseBit || !controllable) {
+            return;
+        }
 
         baseBit.mass = controllable.connectionCount > 0 ? 0.25f : 1.0f;
 
