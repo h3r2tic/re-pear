@@ -731,7 +731,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Welcome to re:pear!
+  m_Text: Welcome to Don't Dispear!
 --- !u!114 &8043134918004884842
 MonoBehaviour:
   m_ObjectHideFlags: 0
