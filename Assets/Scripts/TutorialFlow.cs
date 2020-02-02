@@ -21,7 +21,7 @@ public class TutorialFlow : MonoBehaviour {
         "Objects are activated by the key of same color!",
         "Oops! Undo that last move.",
         "When you're ready, you can test your creation!",
-        "You'll have 30 seconds to move as far as possible!"
+        "You'll have 20 seconds to move as far as possible!"
     };
 
     void Update() {
