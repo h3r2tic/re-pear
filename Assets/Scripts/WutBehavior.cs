@@ -32,7 +32,7 @@ public class WutBehavior : MonoBehaviour {
 
     public static bool isClose(Transform xform) {
         foreach (WutBehavior w in instances) {
-            if ((w.transform.position - xform.position).magnitude < 1.0f) {
+            if ((w.transform.position - xform.position).magnitude < 1.5f) {
                 return true;
             }
         }
