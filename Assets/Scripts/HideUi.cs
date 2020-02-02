@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HideUi : MonoBehaviour {
 
-    bool isEnabled = true;
+    bool isEnabled = false;
 
     // Update is called once per frame
     void Update() {
@@ -19,6 +19,6 @@ public class HideUi : MonoBehaviour {
     }
 
     public void EnableMe() {
-        this.isEnabled = false;
+        this.isEnabled = true;
     }
 }
