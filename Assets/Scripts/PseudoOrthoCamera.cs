@@ -10,11 +10,12 @@ public class PseudoOrthoCamera : MonoBehaviour {
     public float pitch = 0.0f;
     public float clipPlaneBounds = 20.0f;
     public Vector3 worldOffset;
+    public Vector3 shakeOffset = Vector3.zero;
 
     // Update is called once per frame
     void Update() {
         transform.localRotation = Quaternion.AngleAxis(this.yaw, Vector3.up) * Quaternion.AngleAxis(this.pitch, Vector3.right);
-        transform.position = this.transform.localRotation * new Vector3(0.0f, 0.0f, -this.distance) + worldOffset;
+        transform.position = this.transform.localRotation * new Vector3(0.0f, 0.0f, -this.distance) + worldOffset + shakeOffset;
 
         var cam = GetComponent<Camera>();
         cam.nearClipPlane = Mathf.Max(0.1f, this.distance - clipPlaneBounds);

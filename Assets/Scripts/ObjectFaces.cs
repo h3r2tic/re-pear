@@ -14,6 +14,7 @@ public class ObjectFaces : MonoBehaviour {
 
     bool isDragged = false;
     float switchCoolDown = 0.0f;
+    int visibilityMask = 1;
 
     Vector3 parentCachePosition;
 
@@ -23,6 +24,7 @@ public class ObjectFaces : MonoBehaviour {
         this.planeObj.GetComponent<Renderer>().material = this.happyMaterial;
 
         parentCachePosition = this.transform.position;
+        this.visibilityMask = LayerMask.GetMask(new string[] { "Default", "DraggedObject" });
     }
 
     // Update is called once per frame
@@ -73,7 +75,8 @@ public class ObjectFaces : MonoBehaviour {
         //TODO: make it shoot ray from the camera towards the object and check whether it hit the most parent obj in the hierarchy
         var ray = this.transform.position - Camera.main.transform.position;
         ray.Normalize();
-        if (Physics.Raycast(Camera.main.transform.position, ray, out hit, 10000.0f, 1)) {
+
+        if (Physics.Raycast(Camera.main.transform.position, ray, out hit, 10000.0f, this.visibilityMask)) {
             if (hit.transform.root == this.transform.root) {
                 return false;
             } else {
