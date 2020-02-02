@@ -58,6 +58,8 @@ GameObject:
   - component: {fileID: 6553911395751317545}
   - component: {fileID: 6553911395751317547}
   - component: {fileID: 6553911395751317546}
+  - component: {fileID: 334247374080333779}
+  - component: {fileID: 2779444922901193791}
   m_Layer: 0
   m_Name: Part2
   m_TagString: Untagged
@@ -104,6 +106,114 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &334247374080333779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553911395751317544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7a1856c1fc38a4f9a41c88da5eeb39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &2779444922901193791
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553911395751317544}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6553911396152888910
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +320,8 @@ GameObject:
   - component: {fileID: 6553911396165342968}
   - component: {fileID: 6553911396165342971}
   - component: {fileID: 2058281672657477941}
+  - component: {fileID: 2932141705798401865}
+  - component: {fileID: 4299193372673159700}
   - component: {fileID: 5424838767355586057}
   - component: {fileID: 4252212598009277807}
   m_Layer: 0
@@ -384,6 +496,19 @@ MonoBehaviour:
   happyMaterial: {fileID: 2100000, guid: ea05e09d45877a644be4f4d7b8033d56, type: 2}
   surprisedMaterial: {fileID: 2100000, guid: 0f363bda46ea380488eb3ac3569f009e, type: 2}
   anguishedMaterial: {fileID: 2100000, guid: 39d4359201d4cb44d9923e9ccc751482, type: 2}
+--- !u!114 &2932141705798401865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553911396165342966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7a1856c1fc38a4f9a41c88da5eeb39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &4299193372673159700
 --- !u!82 &5424838767355586057
 AudioSource:
   m_ObjectHideFlags: 0
