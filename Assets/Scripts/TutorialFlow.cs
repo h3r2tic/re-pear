@@ -49,22 +49,33 @@ public class TutorialFlow : MonoBehaviour
         if (tutorialStep == 0) {
             this.cameraGuide.SetActive(true);
         }
+        else if (tutorialStep == 1) {
+            this.cameraGuide.GetComponent<Blink>().StopBlink();
+        }
         else if (tutorialStep == 2) {
             this.controlsGuide.SetActive(true);
         }
         else if (tutorialStep == 3) {
             this.undoButton.SetActive(true);
+            var childBlinks = this.controlsGuide.GetComponentsInChildren<Blink>();
+            foreach (Blink blink in childBlinks) {
+                blink.StopBlink();
+            }
         }
         else if (tutorialStep == 4) {
             this.playButton.SetActive(true);
+            this.undoButton.GetComponent<Blink>().StopBlink();
         }
         else if (tutorialStep == 5) {
             this.stopwatch.SetActive(true);
+            this.playButton.GetComponent<Blink>().StopBlink();
         }
-        textComponent.text = tutorialInstructions[tutorialStep];
         if (tutorialStep < tutorialInstructions.Count - 1) {
+            textComponent.text = tutorialInstructions[tutorialStep];
             tutorialStep++;
-        }    
+        } else {
+            break;
+        }
     }
 
     public void RestartTutorial() {
