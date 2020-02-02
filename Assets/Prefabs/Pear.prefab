@@ -230,6 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ccde5f12fa7e140b59b1a4e3ae121d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDispearCanvasPrefab: {fileID: 5200741703815024447, guid: e9a5c280ad0f34c469fac95399355ba8,
+    type: 3}
 --- !u!114 &2924509574541150767
 MonoBehaviour:
   m_ObjectHideFlags: 0
