@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RestartOnDelete : MonoBehaviour {
     void OnDestroy() {
-        FindObjectsOfType<GameFlow>()[0].DelayedRestart();
+        var flows = FindObjectsOfType<GameFlow>();
+        if (flows.Length > 0 && flows[0] != null) {
+            flows[0].DelayedRestart();
+        }
     }
 }
