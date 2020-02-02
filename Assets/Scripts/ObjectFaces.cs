@@ -69,6 +69,7 @@ public class ObjectFaces : MonoBehaviour {
             this.planeObj.GetComponent<Renderer>().material = this.surprisedMaterial;
             this.switchCoolDown = 0.2f;
 
+            if (Random.Range(0, 500) < 2) VocTrig.PlayVoc();
 
         } else if (this.switchCoolDown < 0.0f) {
             this.isDragged = false;
