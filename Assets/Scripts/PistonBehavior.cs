@@ -11,6 +11,7 @@ public class PistonBehavior : MonoBehaviour, IControlHandler {
 
     private bool playOnce = false;
 
+
     public void onInputActive(bool isActive) {
         actuate = isActive;
     }

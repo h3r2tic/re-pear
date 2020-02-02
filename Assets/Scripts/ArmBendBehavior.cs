@@ -7,6 +7,8 @@ public class ArmBendBehavior : MonoBehaviour, IControlHandler {
     public bool flex = false;
     public bool prevBent = false;
 
+
+
     private bool playOnce = true;
 
     WutTracker wutTracker = new WutTracker();

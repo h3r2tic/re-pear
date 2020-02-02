@@ -48,6 +48,8 @@ public class ObjectFaces : MonoBehaviour {
     void CheckForTerror() {
         if (TerrorScript.timeSinceAccident < 2.0f) {
             this.planeObj.GetComponent<Renderer>().material = this.anguishedMaterial;
+
+            //PlAY terror
         }
     }
 
@@ -63,6 +65,8 @@ public class ObjectFaces : MonoBehaviour {
             this.parentCachePosition = this.transform.position;
             this.planeObj.GetComponent<Renderer>().material = this.surprisedMaterial;
             this.switchCoolDown = 0.2f;
+
+
         } else if (this.switchCoolDown < 0.0f) {
             this.isDragged = false;
             this.planeObj.GetComponent<Renderer>().material = this.happyMaterial;

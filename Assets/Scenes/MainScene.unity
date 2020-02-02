@@ -462,7 +462,7 @@ MonoBehaviour:
   PCF_GradientBias: 0.07
   CascadeBlendDistance: 0
   supportOrthographicProjection: 0
-  shadowRenderTexture: {fileID: 1585262996}
+  shadowRenderTexture: {fileID: 1321498016}
   format: 14
   filterMode: 2
   MSAA: 1
@@ -578,7 +578,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!84 &1585262996
+--- !u!84 &1321498016
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

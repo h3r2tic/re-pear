@@ -21,6 +21,9 @@ public class SpinnerBehavior : MonoBehaviour, IControlHandler {
         joint.targetAngularVelocity = new Vector3(targetVel, 0.0f, 0.0f);
 
         if (spin) {
+
+
+
             if (playOnce) {
                 Debug.Log("ARm sound");
                 GetComponent<SimpleSoundModule>().PlayModule();
