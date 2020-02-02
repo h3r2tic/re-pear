@@ -20,10 +20,12 @@ public class CameraRotator : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.X)) {
             targetAngle += -90.0f;
+            GetComponent<SimpleSoundModule>().PlayModule();
         }
 
         if (Input.GetKeyDown(KeyCode.Z)) {
             targetAngle += 90.0f;
+            GetComponent<SimpleSoundModule>().PlayModule();
         }
 
         angle = Mathf.Lerp(targetAngle, angle, Mathf.Exp(-rotationSpeed * Time.deltaTime));
