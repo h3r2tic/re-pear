@@ -754,6 +754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 3806501974896737116}
+  dontDispearCanvasPrefab: {fileID: 0}
 --- !u!82 &3806501974896737116
 AudioSource:
   m_ObjectHideFlags: 0
@@ -930,6 +931,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 5447738220091760556}
+  dontDispearCanvasPrefab: {fileID: 5200741703815024447, guid: e9a5c280ad0f34c469fac95399355ba8,
+    type: 3}
 --- !u!82 &5447738220091760556
 AudioSource:
   m_ObjectHideFlags: 0

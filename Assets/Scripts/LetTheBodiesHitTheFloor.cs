@@ -6,6 +6,8 @@ public class LetTheBodiesHitTheFloor : MonoBehaviour {
     public AudioSource audioSource;
     // Start is called before the first frame update
 
+    public GameObject dontDispearCanvasPrefab;
+
     private void playDeathScream(GameObject obj) {
         var ds = obj.GetComponent<DeathScream>();
         if (ds && ds.clip) {
@@ -21,6 +23,10 @@ public class LetTheBodiesHitTheFloor : MonoBehaviour {
             while (obj.parent) {
                 obj = obj.parent;
                 playDeathScream(obj.gameObject);
+            }
+
+            if (obj.name == "Pear") {
+                Instantiate(this.dontDispearCanvasPrefab);
             }
 
             Destroy(obj.gameObject);
