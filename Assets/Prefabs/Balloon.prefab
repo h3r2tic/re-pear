@@ -455,7 +455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatyBit: {fileID: 8560869953618391638}
   baseBit: {fileID: 8560869954547973965}
-  floatForce: 5
+  floatForce: 6
 --- !u!114 &8560869955408463251
 MonoBehaviour:
   m_ObjectHideFlags: 0

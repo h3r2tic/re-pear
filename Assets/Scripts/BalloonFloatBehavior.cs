@@ -25,6 +25,15 @@ public class BalloonFloatBehavior : MonoBehaviour {
 
         baseBit.mass = controllable.connectionCount > 0 ? 0.25f : 1.0f;
 
-        floatyBit.AddForce(new Vector3(0.0f, floatForce, 0.0f), ForceMode.Force);
+        float randomMult = 0.3f;
+
+        Vector3 force = new Vector3(0.0f, 1.0f, 0.0f);
+        force.x += Mathf.PerlinNoise(Time.timeSinceLevelLoad, 0.0f) - 0.5f;
+        force.z += Mathf.PerlinNoise(0.0f, Time.timeSinceLevelLoad) - 0.5f;
+        force.x *= randomMult;
+        force.z *= randomMult;
+        force *= floatForce;
+
+        floatyBit.AddForce(force, ForceMode.Force);
     }
 }
