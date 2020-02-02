@@ -8,27 +8,25 @@ public class SpinnerBehavior : MonoBehaviour, IControlHandler {
 
     private bool playOnce = true;
 
+    WutTracker wutTracker = new WutTracker();
+
     public void onInputActive(bool isActive) {
         spin = isActive;
     }
 
     void Update() {
-        float spinDir = WutBehavior.isClose(this.transform) ? -Mathf.Sin(Time.timeSinceLevelLoad * 10.0f) : 1.0f;
+        float spinDir = wutTracker.getFiltered(this.transform) ? -Mathf.Sin(Time.timeSinceLevelLoad * 10.0f) : 1.0f;
         float targetVel = this.spin ? 60.0f * spinDir : 0.0f;
 
         joint.targetAngularVelocity = new Vector3(targetVel, 0.0f, 0.0f);
 
-        if (spin)
-        {
-            if (playOnce)
-            {
+        if (spin) {
+            if (playOnce) {
                 Debug.Log("ARm sound");
                 GetComponent<SimpleSoundModule>().PlayModule();
                 playOnce = false;
             }
-        }
-        else
-        {
+        } else {
             GetComponent<SimpleSoundModule>().StopModule();
             playOnce = true;
         }

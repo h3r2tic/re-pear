@@ -5,8 +5,11 @@ using UnityEngine;
 public class ArmBendBehavior : MonoBehaviour, IControlHandler {
     public ConfigurableJoint joint;
     public bool flex = false;
+    public bool prevBent = false;
 
     private bool playOnce = true;
+
+    WutTracker wutTracker = new WutTracker();
 
     public void onInputActive(bool isActive) {
         flex = isActive;
@@ -14,25 +17,23 @@ public class ArmBendBehavior : MonoBehaviour, IControlHandler {
     }
 
     void Update() {
-        bool mode = this.flex ^ WutBehavior.isClose(this.transform);
-        float targetRot = mode ? 60.0f : 0.0f;
+        bool bend = this.flex ^ wutTracker.getFiltered(this.transform);
+        float targetRot = bend ? 60.0f : 0.0f;
 
         joint.targetRotation = Quaternion.Euler(targetRot, 0.0f, 0.0f);
 
+        bool needsSound = bend && !prevBent;
+        prevBent = bend;
 
-        if (flex) 
-        {
-            if (playOnce) 
-            {
+        if (needsSound) {
+            if (playOnce) {
                 Debug.Log("ARm sound");
                 GetComponent<SimpleSoundModule>().PlayModule();
                 playOnce = false;
             }
-        }
-        else 
-        {
+        } else {
             playOnce = true;
         }
-        
+
     }
 }

@@ -6,6 +6,8 @@ public class PistonBehavior : MonoBehaviour, IControlHandler {
     public ConfigurableJoint joint;
     public Transform shaft;
     public bool actuate = false;
+    public bool prevExtended = false;
+    WutTracker wutTracker = new WutTracker();
 
     private bool playOnce = false;
 
@@ -14,8 +16,8 @@ public class PistonBehavior : MonoBehaviour, IControlHandler {
     }
 
     void Update() {
-        bool mode = this.actuate ^ WutBehavior.isClose(this.transform);
-        float targetPos = mode ? -5.0f : 0.0f;
+        bool extend = this.actuate ^ wutTracker.getFiltered(this.transform);
+        float targetPos = extend ? -5.0f : 0.0f;
         joint.targetPosition = new Vector3(targetPos, 0.0f, 0.0f);
 
         var offset = joint.transform.InverseTransformPoint(joint.connectedBody.transform.position);
@@ -28,10 +30,11 @@ public class PistonBehavior : MonoBehaviour, IControlHandler {
         shaft.localPosition = lp;
         shaft.transform.localScale = scl;
 
-        if (actuate)
-        {
-            if (playOnce)
-            {
+        bool needsSound = extend && !prevExtended;
+        prevExtended = extend;
+
+        if (needsSound) {
+            if (playOnce) {
                 Debug.Log("ARm sound");
                 GetComponent<SimpleSoundModule>().PlayModule();
                 playOnce = false;
@@ -39,9 +42,7 @@ public class PistonBehavior : MonoBehaviour, IControlHandler {
                 GetComponentInParent<LandSound>().playOnce = true;
                 GetComponentInParent<LandSound>().isGrounded = false;
             }
-        }
-        else
-        {
+        } else {
             playOnce = true;
         }
     }

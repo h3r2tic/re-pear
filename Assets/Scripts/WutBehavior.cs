@@ -2,6 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class WutTracker {
+    public float timeSinceStateChange = 0.0f;
+    public bool currentState = false;
+
+    public bool getFiltered(Transform xform) {
+        bool newState = WutBehavior.isClose(xform);
+        if (newState != currentState && timeSinceStateChange > 0.2f) {
+            currentState = newState;
+            timeSinceStateChange = 0.0f;
+        }
+
+        timeSinceStateChange += Time.deltaTime;
+
+        return currentState;
+    }
+}
+
 public class WutBehavior : MonoBehaviour {
     public static List<WutBehavior> instances = new List<WutBehavior>();
 
