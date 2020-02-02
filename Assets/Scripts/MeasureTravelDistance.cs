@@ -13,6 +13,10 @@ public class MeasureTravelDistance : MonoBehaviour {
     }
 
     public float Stop() {
-        return Vector3.Distance(this.prevPos, this.centerOfMass.position);
+        var p0 = this.prevPos;
+        var p1 = this.centerOfMass.position;
+        p0.y = 0.0f;
+        p1.y = 0.0f;
+        return Vector3.Distance(p0, p1);
     }
 }
