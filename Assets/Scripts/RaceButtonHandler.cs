@@ -15,4 +15,11 @@ public class RaceButtonHandler : MonoBehaviour {
             ClicketyHandler.instance.onUndoLastAction();
         }
     }
+
+    public void CameraLeft() {
+        CameraRotator.cameraLeftButtonPressed = true;
+    }
+    public void CameraRight() {
+        CameraRotator.cameraRightButtonPressed = true;
+    }
 }

@@ -17,7 +17,16 @@ public class PearFaces : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha2) || Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Alpha4)) {
+        bool anyButtonDown = false;
+        if (ClicketyHandler.instance) {
+            for (int i = 1; i <= 4; ++i) {
+                if (ClicketyHandler.instance.buttonsDown[i]) {
+                    anyButtonDown = true;
+                }
+            }
+        }
+
+        if (anyButtonDown || Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Alpha2) || Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Alpha4)) {
             this.GetComponent<MeshFilter>().mesh = pearsistentFace;
             //this.cooldown = 0.3f;
         } else if (this.GetComponent<Rigidbody>().velocity.magnitude > 0.5f) {

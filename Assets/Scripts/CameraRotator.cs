@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(PseudoOrthoCamera))]
 public class CameraRotator : MonoBehaviour {
     public float rotationSpeed = 5.0f;
+    public static bool cameraLeftButtonPressed = false;
+    public static bool cameraRightButtonPressed = false;
 
     PseudoOrthoCamera poc;
     float angle = 0.0f;
@@ -18,12 +20,14 @@ public class CameraRotator : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.X)) {
+        if (cameraLeftButtonPressed || Input.GetKeyDown(KeyCode.X)) {
+            cameraLeftButtonPressed = false;
             targetAngle += -90.0f;
             GetComponent<SimpleSoundModule>().PlayModule();
         }
 
-        if (Input.GetKeyDown(KeyCode.Z)) {
+        if (cameraRightButtonPressed || Input.GetKeyDown(KeyCode.Z)) {
+            cameraRightButtonPressed = false;
             targetAngle += 90.0f;
             GetComponent<SimpleSoundModule>().PlayModule();
         }

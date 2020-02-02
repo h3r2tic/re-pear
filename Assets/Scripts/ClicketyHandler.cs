@@ -16,6 +16,8 @@ public class ClicketyHandler : MonoBehaviour {
 
     List<Joint> recentlyCreatedJoints = new List<Joint>();
 
+    public bool[] buttonsDown = new bool[5] { false, false, false, false, false };
+
     public static ClicketyHandler instance;
     void Awake() {
         instance = this;
@@ -39,8 +41,7 @@ public class ClicketyHandler : MonoBehaviour {
                 if (hit.rigidbody) {
                     this.onDragStart(hit.rigidbody, hit.point, hit.normal);
                     //Audio Start Loop
-                    foreach(SimpleSoundModule sm in GetComponents<SimpleSoundModule>()) 
-                    {
+                    foreach (SimpleSoundModule sm in GetComponents<SimpleSoundModule>()) {
                         if (sm.SoundID == "SelectLoop") sm.PlayModule();
                         if (sm.SoundID == "Click") sm.PlayModule();
                     }
@@ -62,17 +63,13 @@ public class ClicketyHandler : MonoBehaviour {
                     this.onDragEnd(hit.rigidbody, hit.point, hit.normal);
                     Debug.Log("Attached");
                     //Audio End loop
-                    foreach (SimpleSoundModule sm in GetComponents<SimpleSoundModule>())
-                    {
+                    foreach (SimpleSoundModule sm in GetComponents<SimpleSoundModule>()) {
                         if (sm.SoundID == "SelectLoop") sm.StopModule();
                         if (sm.SoundID == "Select") sm.PlayModule();
                     }
-                }
-                else
-                {
+                } else {
                     Debug.Log("Not attached");
-                    foreach (SimpleSoundModule sm in GetComponents<SimpleSoundModule>())
-                    {
+                    foreach (SimpleSoundModule sm in GetComponents<SimpleSoundModule>()) {
                         if (sm.SoundID == "SelectLoop") sm.StopModule();
                     }
                 }

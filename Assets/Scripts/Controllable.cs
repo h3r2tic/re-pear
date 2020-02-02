@@ -10,6 +10,7 @@ public interface IControlHandler {
 
 public class Controllable : MonoBehaviour {
     KeyCode myKey;
+    int myButton;
     List<IControlHandler> controlHandlers;
 
     static int nextColor = 0;
@@ -47,6 +48,7 @@ public class Controllable : MonoBehaviour {
             var keys = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4 };
             var keyIdx = nextColor++ % 4;
             this.myKey = keys[keyIdx];
+            this.myButton = keyIdx + 1;
 
             foreach (GameObject obj in desc) {
                 var mr = obj.GetComponent<MeshRenderer>();
@@ -62,7 +64,12 @@ public class Controllable : MonoBehaviour {
             return;
         }
 
-        if (Input.GetKey(myKey)) {
+        bool buttonDown = false;
+        if (ClicketyHandler.instance) {
+            buttonDown = ClicketyHandler.instance.buttonsDown[myButton];
+        }
+
+        if (Input.GetKey(myKey) || buttonDown) {
             foreach (var h in this.controlHandlers) {
                 h.onInputActive(true);
             }
