@@ -11,7 +11,8 @@ public class SpinnerBehavior : MonoBehaviour, IControlHandler {
     }
 
     void Update() {
-        float targetVel = this.spin ? 60.0f : 0.0f;
+        float spinDir = WutBehavior.isClose(this.transform) ? -Mathf.Sin(Time.timeSinceLevelLoad * 10.0f) : 1.0f;
+        float targetVel = this.spin ? 60.0f * spinDir : 0.0f;
 
         joint.targetAngularVelocity = new Vector3(targetVel, 0.0f, 0.0f);
     }

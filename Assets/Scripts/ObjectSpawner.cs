@@ -10,6 +10,7 @@ public class ObjectSpawner : MonoBehaviour {
     // Spawn a few at the start
     public int targetDisconnectedObjectCount = 3;
     public int disconnectedCount = 0;
+    int totalSpawnCount = 0;
 
     public static ObjectSpawner instance;
     void Awake() {
@@ -35,8 +36,15 @@ public class ObjectSpawner : MonoBehaviour {
         Vector3 pos = new Vector3(Random.Range(-spawnerExtents.x, spawnerExtents.x), 0.0f, Random.Range(-spawnerExtents.y, spawnerExtents.y)) + this.offset;
 
         int idx = Random.Range(0, prefabs.Count);
+
+        // Only spawn those once we have spawned at least three other objects
+        while (prefabs[idx].GetComponent<WutBehavior>() && totalSpawnCount <= 3) {
+            idx = Random.Range(0, prefabs.Count);
+        }
+
         var prefab = prefabs[idx];
 
+        ++totalSpawnCount;
         return Instantiate(prefab, pos, prefab.transform.localRotation).gameObject;
     }
 }
