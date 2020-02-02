@@ -272,7 +272,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d8daeca83adc1fd488d45f6dea9b51c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -322,6 +322,8 @@ GameObject:
   - component: {fileID: 2058281672657477941}
   - component: {fileID: 2932141705798401865}
   - component: {fileID: 4299193372673159700}
+  - component: {fileID: 5424838767355586057}
+  - component: {fileID: 4252212598009277807}
   m_Layer: 0
   m_Name: Part1
   m_TagString: Untagged
@@ -507,6 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &4299193372673159700
+--- !u!82 &5424838767355586057
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -602,6 +605,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4252212598009277807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553911396165342966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5b1954a013eb74fb2a931db0f89ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundID: Spinner
+  AudioSourceNo: 0
+  clip: {fileID: 8300000, guid: c282dcdef05a39b4aa4ba1bc391d6000, type: 3}
+  playType: 2
+  NumLoops: 0
 --- !u!1 &6553911396609839575
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +680,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d8daeca83adc1fd488d45f6dea9b51c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

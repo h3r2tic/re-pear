@@ -6,6 +6,8 @@ public class SpinnerBehavior : MonoBehaviour, IControlHandler {
     public ConfigurableJoint joint;
     public bool spin = false;
 
+    private bool playOnce = true;
+
     public void onInputActive(bool isActive) {
         spin = isActive;
     }
@@ -15,5 +17,20 @@ public class SpinnerBehavior : MonoBehaviour, IControlHandler {
         float targetVel = this.spin ? 60.0f * spinDir : 0.0f;
 
         joint.targetAngularVelocity = new Vector3(targetVel, 0.0f, 0.0f);
+
+        if (spin)
+        {
+            if (playOnce)
+            {
+                Debug.Log("ARm sound");
+                GetComponent<SimpleSoundModule>().PlayModule();
+                playOnce = false;
+            }
+        }
+        else
+        {
+            GetComponent<SimpleSoundModule>().StopModule();
+            playOnce = true;
+        }
     }
 }
