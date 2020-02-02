@@ -17,7 +17,7 @@ public class TutorialFlow : MonoBehaviour {
 
     private List<string> tutorialInstructions = new List<string>() {
         "Look around!",
-        "Click and drag to construct.",
+        "Click and drag to attach objects to each other.",
         "Objects are activated by the key of same color!",
         "Oops! Undo that last move.",
         "When you're ready, you can test your creation!",
