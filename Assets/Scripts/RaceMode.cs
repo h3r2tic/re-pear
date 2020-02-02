@@ -15,13 +15,16 @@ public class RaceMode : MonoBehaviour {
     bool isActive = false;
 
     GameObject stopwatch;
+    GameObject undoButton;
+    GameObject nextButton;
 
     public GameObject endStateUIPrefab;
     GameObject endStateUIObject;
 
     void Start() {
-        GameObject.Find("Stopwatch");
         this.stopwatch = GameObject.Find("Stopwatch");
+        this.undoButton = GameObject.Find("UndoButton");
+        this.nextButton = GameObject.Find("NextButton");
 
         this.countdown = this.stopwatch.transform.GetChild(0).GetComponent<Text>();
         this.stopwatch.SetActive(false);
@@ -44,6 +47,9 @@ public class RaceMode : MonoBehaviour {
         ground.transform.localScale = new Vector3(300.0f, 1.0f, 300.0f);
         //
         GameObject.Find("RaceText").GetComponent<Text>().enabled = true;
+        //
+        this.undoButton.SetActive(false);
+        this.nextButton.SetActive(false);
 
     }
 
@@ -103,6 +109,9 @@ public class RaceMode : MonoBehaviour {
         if (this.endStateUIObject) {
             Destroy(this.endStateUIObject);
             this.endStateUIObject = null;
+
+            this.undoButton.SetActive(true);
+            this.nextButton.SetActive(true);
         }
     }
 
