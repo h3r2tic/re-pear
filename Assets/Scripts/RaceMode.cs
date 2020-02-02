@@ -100,6 +100,7 @@ public class RaceMode : MonoBehaviour {
         Cursor.visible = true;
         this.endStateUIObject = Instantiate(this.endStateUIPrefab);
         this.endStateUIObject.transform.Find("Canvas/Panel/Layout/Score").GetComponent<Text>().text = score.ToString("0.00");
+        this.endStateUIObject.transform.GetChild(0).GetComponent<HideUi>().EnableMe();
         //GameObject.Find("RaceText").GetComponent<Text>().enabled = true;
         //GameObject.Find("RaceText").GetComponent<Text>().text = "Distance traveled: " + score.ToString("0.00");
         //GameObject.Find("RaceText").GetComponent<Text>().fontSize = 60;
