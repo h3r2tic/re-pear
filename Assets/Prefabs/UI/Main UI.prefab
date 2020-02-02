@@ -113,7 +113,7 @@ RectTransform:
   - {fileID: 8955063057788670609}
   - {fileID: 4294734351900449866}
   - {fileID: 3711530616997650697}
-  - {fileID: 1017212909626610053}
+  - {fileID: 6374153408646929801}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -614,7 +614,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 08a266b7594aa495fa3754cf5954cacf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 074bbd052fcc64c7f94ba5d7ec39a539, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -962,13 +962,13 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8371510685327825136}
+  m_GameObject: {fileID: 6374153408646929846}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb3b6ae09e2a54bed9610ed3cd63c2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raceButtonHandler: {fileID: 8371510685327825136}
+  raceButtonHandler: {fileID: 6374153408646929846}
 --- !u!1 &8759295755786358744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,13 +1077,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99e286eec7c5a87489682af0bea03af2, type: 3}
---- !u!1 &8371510685327825136 stripped
+--- !u!1 &6374153408646929846 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3195337324064195979, guid: 99e286eec7c5a87489682af0bea03af2,
     type: 3}
   m_PrefabInstance: {fileID: 6374153408646929787}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1017212909626610053 stripped
+--- !u!4 &6374153408646929801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6226322144918408446, guid: 99e286eec7c5a87489682af0bea03af2,
     type: 3}
