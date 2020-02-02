@@ -39,7 +39,7 @@ public class RaceMode : MonoBehaviour {
         this.watch = FindObjectsOfType<MeasureTravelDistance>()[0];
         watch.Go();
         //
-        this.timer = 20.0f;
+        this.timer = 30.0f;
         this.pretimer = 2.0f;
         this.prepretimer = 0.5f;
         //expand the floor
