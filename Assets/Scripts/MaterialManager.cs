@@ -18,7 +18,7 @@ public class MaterialManager : MonoBehaviour {
         if (controlsGuide) {
             for (int i = 0; i < keyMats.Count; ++i) {
                 var keyGuideImage = controlsGuide.transform.GetChild(i).gameObject.GetComponent<Image>();
-                keyGuideImage.color = keyMats[i].color;
+                //keyGuideImage.color = keyMats[i].color;
             }
         } else {
             Debug.LogError("Could not find the ControlsGuide object");
