@@ -17,7 +17,7 @@ public class SoundTesta : MonoBehaviour
 
     }
 
-    
+    /*
     void OnGUI()
     {
         if (GUI.Button(new Rect(10, 70, 150, 30), "Play"))
@@ -30,7 +30,7 @@ public class SoundTesta : MonoBehaviour
         {
             StopAction.Invoke();
         }
-    }
+    }*/
 
     private void Update()
     {
