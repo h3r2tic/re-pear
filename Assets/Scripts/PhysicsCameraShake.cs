@@ -12,9 +12,11 @@ public class PhysicsCameraShake : MonoBehaviour {
 
     void onImpulse(Vector3 impulse) {
         float m = impulse.magnitude;
-        float maxStrength = 0.3f;
-        float v = Mathf.Min(1.0f, m * 0.25f) * maxStrength;
-        targetShakeOffset += -impulse.normalized * v;
+        if (m > 1.0f && Time.timeSinceLevelLoad > 0.5f) {
+            float maxStrength = 0.2f;
+            float v = Mathf.Min(1.0f, m * 0.25f) * maxStrength;
+            targetShakeOffset += -impulse.normalized * v;
+        }
     }
 
     void OnCollisionEnter(Collision collision) {

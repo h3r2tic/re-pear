@@ -79,6 +79,13 @@ public class RaceMode : MonoBehaviour {
                 var newOffset = pear.transform.position + new Vector3(0, 1.0f, 0);
                 poc.worldOffset = Vector3.Lerp(newOffset, poc.worldOffset, Mathf.Exp(-2.0f * Time.deltaTime));
             }
+
+            if (pear) {
+                var shake = pear.GetComponent<PhysicsCameraShake>();
+                if (shake) {
+                    shake.enabled = true;
+                }
+            }
         }
 
     }
