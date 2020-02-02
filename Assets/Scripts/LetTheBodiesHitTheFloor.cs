@@ -16,6 +16,10 @@ public class LetTheBodiesHitTheFloor : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider collision) {
+        if (!this.gameObject.activeSelf) {
+            return;
+        }
+
         if (collision.transform) {
             var obj = collision.transform;
             playDeathScream(obj.gameObject);
