@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "pear",
+"productVersion": "0.1",
+"dataUrl": "RePear0.0.1-WebGL.data.unityweb",
+"wasmCodeUrl": "RePear0.0.1-WebGL.wasm.code.unityweb",
+"wasmFrameworkUrl": "RePear0.0.1-WebGL.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.2.19f1"
+}
