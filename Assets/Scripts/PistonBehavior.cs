@@ -7,6 +7,8 @@ public class PistonBehavior : MonoBehaviour, IControlHandler {
     public Transform shaft;
     public bool actuate = false;
 
+    private bool playOnce = false;
+
     public void onInputActive(bool isActive) {
         actuate = isActive;
     }
@@ -25,5 +27,22 @@ public class PistonBehavior : MonoBehaviour, IControlHandler {
         lp.x = offset.x * 0.5f;
         shaft.localPosition = lp;
         shaft.transform.localScale = scl;
+
+        if (actuate)
+        {
+            if (playOnce)
+            {
+                Debug.Log("ARm sound");
+                GetComponent<SimpleSoundModule>().PlayModule();
+                playOnce = false;
+
+                GetComponentInParent<LandSound>().playOnce = true;
+                GetComponentInParent<LandSound>().isGrounded = false;
+            }
+        }
+        else
+        {
+            playOnce = true;
+        }
     }
 }
