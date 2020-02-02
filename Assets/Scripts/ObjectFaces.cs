@@ -12,6 +12,9 @@ public class ObjectFaces : MonoBehaviour {
     public Material surprisedMaterial;
     public Material anguishedMaterial;
 
+    public float velocityThreshold = 0.2f;
+    public Vector3 faceLocalOffset = Vector3.zero;
+
     bool isDragged = false;
     float switchCoolDown = 0.0f;
     int visibilityMask = 1;
@@ -33,7 +36,7 @@ public class ObjectFaces : MonoBehaviour {
         this.planeObj.transform.LookAt(Camera.main.transform);
         this.planeObj.transform.Rotate(planeRot.x, planeRot.y, planeRot.z, Space.Self);
 
-        this.planeObj.transform.position = this.transform.position - new Vector3(0.0f, 0.0f, 0.0f);
+        this.planeObj.transform.position = this.transform.position + this.transform.TransformVector(this.faceLocalOffset);
 
         CheckIfDragged();
         CheckForTerror();
@@ -60,7 +63,7 @@ public class ObjectFaces : MonoBehaviour {
     }
 
     void CheckIfDragged() {
-        if (this.GetComponent<Rigidbody>().velocity.magnitude > 0.2f) {
+        if (this.GetComponent<Rigidbody>().velocity.magnitude > velocityThreshold) {
             this.isDragged = true;
             this.parentCachePosition = this.transform.position;
             this.planeObj.GetComponent<Renderer>().material = this.surprisedMaterial;
