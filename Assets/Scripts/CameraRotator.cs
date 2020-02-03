@@ -20,14 +20,14 @@ public class CameraRotator : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (cameraLeftButtonPressed || Input.GetKeyDown(KeyCode.X)) {
-            cameraLeftButtonPressed = false;
+        if (cameraRightButtonPressed || Input.GetKeyDown(KeyCode.X)) {
+            cameraRightButtonPressed = false;
             targetAngle += -90.0f;
             GetComponent<SimpleSoundModule>().PlayModule();
         }
 
-        if (cameraRightButtonPressed || Input.GetKeyDown(KeyCode.Z)) {
-            cameraRightButtonPressed = false;
+        if (cameraLeftButtonPressed || Input.GetKeyDown(KeyCode.Z)) {
+            cameraLeftButtonPressed = false;
             targetAngle += 90.0f;
             GetComponent<SimpleSoundModule>().PlayModule();
         }
