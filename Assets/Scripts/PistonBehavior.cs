@@ -9,6 +9,8 @@ public class PistonBehavior : MonoBehaviour, IControlHandler {
     public bool prevExtended = false;
     WutTracker wutTracker = new WutTracker();
 
+    //Sound Vars
+    public SimpleSoundModule PistonJump;
     private bool playOnce = false;
 
 
@@ -36,12 +38,9 @@ public class PistonBehavior : MonoBehaviour, IControlHandler {
 
         if (needsSound) {
             if (playOnce) {
-                Debug.Log("ARm sound");
-                GetComponent<SimpleSoundModule>().PlayModule();
-                playOnce = false;
 
-                GetComponentInParent<LandSound>().playOnce = true;
-                GetComponentInParent<LandSound>().isGrounded = false;
+                PistonJump.PlayModule();
+                playOnce = false;
             }
         } else {
             playOnce = true;

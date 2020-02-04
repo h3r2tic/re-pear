@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class SoundModule : MonoBehaviour
 {
-    private AudioSource source;
+    [HideInInspector]
+    public AudioSource source;
+
     private List<int> ShuffleList;
     private int LastPlayed = 0;
     private int clipToPlay = 0;
     private int loopCounter = 0;
-    private float loopTimer = 0f;
+    //private float loopTimer = 0f;
     private bool cancelLoop = false;
 
     [Header("Add Audio Clips")]

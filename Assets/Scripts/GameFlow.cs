@@ -8,6 +8,8 @@ public class GameFlow : MonoBehaviour {
     float countdown = 1.0f;
     bool isDelayedRestart = false;
 
+    public SimpleSoundModule Select;
+
     void Update() {
         if (Input.GetKeyDown(KeyCode.R)) {
             FindObjectsOfType<RaceMode>()[0].ClearEndStateUI();
@@ -24,13 +26,15 @@ public class GameFlow : MonoBehaviour {
     }
 
     public void LoadMainScene() {
-        UISounds.instance.playSelectSound();
+        //UISounds.instance.playSelectSound();
+        Select.PlayModule();
         Cursor.visible = true;
         SceneManager.LoadScene("MainScene");
     }
 
     public void ReloadCurrentScene() {
-        UISounds.instance.playSelectSound();
+        //UISounds.instance.playSelectSound();
+        Select.PlayModule();
         Cursor.visible = true;
         FindObjectsOfType<RaceMode>()[0].ClearEndStateUI();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

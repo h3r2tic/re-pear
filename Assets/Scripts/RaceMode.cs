@@ -21,6 +21,9 @@ public class RaceMode : MonoBehaviour {
     public GameObject endStateUIPrefab;
     GameObject endStateUIObject;
 
+    //Sound Var
+    public SimpleSoundModule RaceModeSound;
+
     void Start() {
         this.stopwatch = GameObject.Find("Stopwatch");
         this.undoButton = GameObject.Find("UndoButton");
@@ -31,6 +34,9 @@ public class RaceMode : MonoBehaviour {
     }
 
     public void StartRace() {
+
+        RaceModeSound.PlayModule();
+
         this.isActive = true;
         //remove ability to move objects
         FindObjectsOfType<ClicketyHandler>()[0].enabled = false;

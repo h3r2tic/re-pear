@@ -6,6 +6,7 @@ public class SpinnerBehavior : MonoBehaviour, IControlHandler {
     public ConfigurableJoint joint;
     public bool spin = false;
 
+    public SimpleSoundModule SpinLoop;
     private bool playOnce = true;
 
     WutTracker wutTracker = new WutTracker();
@@ -22,15 +23,12 @@ public class SpinnerBehavior : MonoBehaviour, IControlHandler {
 
         if (spin) {
 
-
-
             if (playOnce) {
-                Debug.Log("ARm sound");
-                GetComponent<SimpleSoundModule>().PlayModule();
+                SpinLoop.PlayModule();
                 playOnce = false;
             }
         } else {
-            GetComponent<SimpleSoundModule>().StopModule();
+            SpinLoop.StopModule();
             playOnce = true;
         }
     }

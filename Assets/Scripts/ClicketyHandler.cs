@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ClicketyHandler : MonoBehaviour {
     public Transform cursorObject;
@@ -15,6 +16,13 @@ public class ClicketyHandler : MonoBehaviour {
     private Vector3 normalOnDraggedBody;
 
     List<Joint> recentlyCreatedJoints = new List<Joint>();
+
+    //Sounds
+    public SimpleSoundModule SelectLoop;
+    public SimpleSoundModule ClickObject;
+    public SimpleSoundModule AttachObject;
+    public SimpleSoundModule Undo;
+
 
     public static ClicketyHandler instance;
     void Awake() {
@@ -38,12 +46,10 @@ public class ClicketyHandler : MonoBehaviour {
             if (gotHit) {
                 if (hit.rigidbody) {
                     this.onDragStart(hit.rigidbody, hit.point, hit.normal);
-                    //Audio Start Loop
-                    foreach(SimpleSoundModule sm in GetComponents<SimpleSoundModule>()) 
-                    {
-                        if (sm.SoundID == "SelectLoop") sm.PlayModule();
-                        if (sm.SoundID == "Click") sm.PlayModule();
-                    }
+
+                    //Audio
+                    ClickObject.PlayModule();
+                    SelectLoop.PlayModule();
                 }
             }
         }
@@ -60,21 +66,14 @@ public class ClicketyHandler : MonoBehaviour {
             if (gotHit && draggedBody) {
                 if (canAttachObjects(draggedBody.transform, hit.transform)) {
                     this.onDragEnd(hit.rigidbody, hit.point, hit.normal);
-                    Debug.Log("Attached");
-                    //Audio End loop
-                    foreach (SimpleSoundModule sm in GetComponents<SimpleSoundModule>())
-                    {
-                        if (sm.SoundID == "SelectLoop") sm.StopModule();
-                        if (sm.SoundID == "Select") sm.PlayModule();
-                    }
+                    
+                    //Debug.Log("Attached");
+                    SelectLoop.StopModule();
+                    AttachObject.PlayModule();
                 }
                 else
                 {
-                    Debug.Log("Not attached");
-                    foreach (SimpleSoundModule sm in GetComponents<SimpleSoundModule>())
-                    {
-                        if (sm.SoundID == "SelectLoop") sm.StopModule();
-                    }
+                    SelectLoop.StopModule();
                 }
             }
 
@@ -162,7 +161,6 @@ public class ClicketyHandler : MonoBehaviour {
             return;
         }
 
-        //Attach sound
 
         Quaternion backupRotation = draggedBody.transform.localRotation;
 
@@ -257,6 +255,9 @@ public class ClicketyHandler : MonoBehaviour {
                 Destroy(last);
             }
         }
+
+        //Play Undo Sound
+        Undo.PlayModule();
     }
 
     void createCursorJoint() {

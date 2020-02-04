@@ -18,12 +18,12 @@ public class CameraRotator : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.X)) {
+        if (Input.GetKeyDown(KeyCode.X) && !GetComponent<SimpleSoundModule>().source.isPlaying) {
             targetAngle += -90.0f;
             GetComponent<SimpleSoundModule>().PlayModule();
         }
 
-        if (Input.GetKeyDown(KeyCode.Z)) {
+        if (Input.GetKeyDown(KeyCode.Z) && !GetComponent<SimpleSoundModule>().source.isPlaying) {
             targetAngle += 90.0f;
             GetComponent<SimpleSoundModule>().PlayModule();
         }

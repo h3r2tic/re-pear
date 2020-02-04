@@ -4,13 +4,12 @@ using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class SimpleSoundModule : MonoBehaviour {
-    public string SoundID;
-    public int AudioSourceNo;
 
-    private AudioSource source;
+    [HideInInspector]
+    public AudioSource source;
 
-    private int loopCounter = 0;
-    private float loopTimer = 0f;
+    //private int loopCounter = 0;
+    //private float loopTimer = 0f;
     private float clipLength;
     private bool fadingOut = false;
 
@@ -19,6 +18,8 @@ public class SimpleSoundModule : MonoBehaviour {
 
     [Header("Playback Settings")]
     public PlayType playType = PlayType.SINGLE_TRIG;
+
+    public bool DontInterrupt = true;
 
     [Tooltip("Setting NumLoops to 0 = infinity")]
     public int NumLoops = 0;
@@ -39,22 +40,25 @@ public class SimpleSoundModule : MonoBehaviour {
             throw new System.Exception("Error: No clip added to module");
         }
 
-        if (GetComponent<AudioSource>() == null) gameObject.AddComponent<AudioSource>();
+        if (GetComponent<AudioSource>() == null) source = gameObject.AddComponent<AudioSource>();
+        else source = GetComponent<AudioSource>();
 
-        source = GetComponents<AudioSource>()[AudioSourceNo];
         source.clip = clip;
         clipLength = clip.length;
     }
 
     private void PlaySound() {
         this.fadingOut = false;
-        source.volume = 1.0f;
-
+        //source.volume = 1.0f;
+        //Debug.Log(gameObject.transform.root.gameObject.name);
+        if (source == null) Debug.Log(gameObject + "derr");
         if (playType == PlayType.POLY_Trig) {
             source.PlayOneShot(clip); //took away volume param
         } else {
             //source.volume = volume;
-            source.Play();
+
+            if (DontInterrupt && !source.isPlaying) source.Play();
+            else if(!DontInterrupt) source.Play();
         }
     }
 
@@ -76,7 +80,7 @@ public class SimpleSoundModule : MonoBehaviour {
     public void StopModule() {
         //Add fade param
         source.loop = false;
-        loopCounter = 0;
+        //loopCounter = 0;
         CancelInvoke();
         fadeOut();
     }

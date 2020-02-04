@@ -3,32 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PhysicsSoundSource : MonoBehaviour {
-    private PhysicsSoundSystem soundSys;
-    private AudioSource audioSource;
-    private AudioLowPassFilter filter;
+    //private PhysicsSoundSystem soundSys;
 
+    public SoundModule Impact;
 
 
     private void OnCollisionEnter(Collision collision) {
-        AudioClip clip = null;
-        if (collision.impulse.magnitude > 0.3f) {
-            clip = soundSys.getRandomClip();
+
+        //Add obj ref to rest of objects and take away null check
+        if(Impact != null) 
+        {
+            if(collision.relativeVelocity.magnitude > 1) 
+            {
+                Impact.source.volume = Mathf.Clamp01(collision.relativeVelocity.magnitude * 0.15f);
+                Impact.PlayModule();
+            }
+
         }
 
-        if (clip && !audioSource.isPlaying) {
-            float volume = Mathf.Min(collision.impulse.magnitude / 5.0f, 1.0f);
-            audioSource.pitch = Random.Range(0.5f, 1.25f);
-            audioSource.PlayOneShot(clip, volume);
-        }
+        //Debug.Log(gameObject + " " + Mathf.Clamp01(collision.relativeVelocity.magnitude));
     }
 
-    // Use this for initialization
     void Start() {
-        this.soundSys = GameObject.FindObjectOfType<PhysicsSoundSystem>();
-        this.audioSource = this.gameObject.GetComponent<AudioSource>();
-        audioSource.volume = 0.6f;
-        this.audioSource.playOnAwake = false;
-        filter = gameObject.AddComponent<AudioLowPassFilter>();
-        filter.cutoffFrequency = 1000;
+
     }
+
+    
 }
+
+

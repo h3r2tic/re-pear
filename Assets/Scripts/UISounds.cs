@@ -16,14 +16,14 @@ public class UISounds : MonoBehaviour
     public AudioSource output;
 
     public void playUndoSound() {
-        output.PlayOneShot(undo);
+        //output.PlayOneShot(undo);
     }
 
     public void playSelectSound() {
-        output.PlayOneShot(select);
+        //output.PlayOneShot(select);
     }
 
     public void playStartRaceSound() {
-        output.PlayOneShot(startRace);
+        //output.PlayOneShot(startRace);
     }
 }

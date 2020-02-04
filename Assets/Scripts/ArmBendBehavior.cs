@@ -7,8 +7,8 @@ public class ArmBendBehavior : MonoBehaviour, IControlHandler {
     public bool flex = false;
     public bool prevBent = false;
 
-
-
+    //Sound Logic
+    public SimpleSoundModule ArmSound;
     private bool playOnce = true;
 
     WutTracker wutTracker = new WutTracker();
@@ -29,8 +29,7 @@ public class ArmBendBehavior : MonoBehaviour, IControlHandler {
 
         if (needsSound) {
             if (playOnce) {
-                Debug.Log("ARm sound");
-                GetComponent<SimpleSoundModule>().PlayModule();
+                ArmSound.PlayModule();
                 playOnce = false;
             }
         } else {

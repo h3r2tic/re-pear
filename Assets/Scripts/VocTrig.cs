@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class VocTrig : MonoBehaviour
 {
+    public SoundModule VocSound;
     static SoundModule sm;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        sm = GetComponent<SoundModule>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        sm = VocSound;
     }
 
     public static void PlayVoc()
